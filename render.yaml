@@ -1,0 +1,26 @@
+# Blueprint Render : serveur Node.js + base PostgreSQL
+# Pour un usage réel, passez les deux "plan" à un plan payant (voir README.md).
+databases:
+  - name: ecole-db
+    databaseName: ecole
+    plan: free            # gratuit = suppression après 30 jours ; en production : basic-256mb
+
+services:
+  - type: web
+    name: ecole-abou-el-kacem-chebbi
+    runtime: node
+    plan: free            # gratuit = mise en veille après 15 min ; en production : starter
+    buildCommand: npm ci --omit=dev
+    startCommand: node server.js
+    healthCheckPath: /api/session
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ecole-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: SETUP_CODE
+        generateValue: true

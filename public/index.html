@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light"><head><meta charset="utf-8"><title>École Abou El Kacem Chebbi – Gestion scolaire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--navy:#14284b;--teal:#1f9d8f;--bg:#f4f6fa;--card:#fff;--tx:#1b2433;--mu:#5d6b82;--bd:#dfe4ee;--red:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1626;--card:#16233b;--tx:#e8edf6;--mu:#9aa8c0;--bd:#2a3a58;--navy:#0a1220;--red:#ff8a80}}
+*{box-sizing:border-box}html,body{margin:0}body{font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--tx)}
+a{color:var(--teal)}button,input,select,textarea{font:inherit}
+.app{display:flex;min-height:100vh}nav{width:230px;background:var(--navy);color:#fff;padding:16px 12px;flex-shrink:0}
+nav h1{font:700 16px/1.2 Georgia,serif;margin:0 6px 16px}nav a{display:block;color:#cfd8ea;text-decoration:none;padding:9px 10px;border-radius:6px;margin-bottom:2px}
+nav a.on,nav a:hover{background:rgba(255,255,255,.12);color:#fff}nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+main{flex:1;padding:20px;min-width:0;max-width:1100px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+h2{font:700 22px Georgia,serif;margin:0}h3{margin:0 0 8px;font-size:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;margin-bottom:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}.kpi b{display:block;font-size:26px;color:var(--teal)}.kpi span{color:var(--mu);font-size:13px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:8px;border-bottom:1px solid var(--bd);white-space:nowrap}th{color:var(--mu);font-weight:600;font-size:13px}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:end}label{display:block;font-size:13px;color:var(--mu)}
+input,select,textarea{width:100%;padding:8px;border:1px solid var(--bd);border-radius:6px;background:var(--card);color:var(--tx)}
+.b{background:var(--teal);color:#fff;border:0;border-radius:6px;padding:9px 14px;cursor:pointer}.b.s{background:transparent;color:var(--teal);border:1px solid var(--teal)}.b.d{background:transparent;color:var(--red);border:1px solid var(--red);padding:4px 9px}
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;background:#e3f4f2;color:#146b61}.tag.w{background:#fdeceb;color:var(--red)}
+.msg{padding:10px;border-radius:6px;margin-bottom:12px}.msg.ok{background:#e3f4f2;color:#146b61}.msg.er{background:#fdeceb;color:var(--red)}
+.login{max-width:380px;margin:8vh auto;padding:0 16px}.note{color:var(--mu);font-size:13px}.menu{display:none}
+@media(max-width:760px){.app{display:block}nav{width:100%;padding:10px}nav a{display:inline-block}main{padding:12px}}
+:root{--gold:#f2b84b}body{font-family:Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px}h2,h3,nav h1{font-family:Figtree,system-ui,sans-serif}h2{font-size:24px;letter-spacing:-.01em}
+nav{width:250px;position:sticky;top:0;height:100vh;overflow:auto;display:flex;flex-direction:column;padding:18px 14px}
+.brandrow{display:flex;gap:10px;align-items:center;margin:0 4px 22px;line-height:1.25}.brandrow small{color:#9fb0cf}
+.logo{width:40px;height:40px;border-radius:11px;background:var(--teal);display:grid;place-items:center;font:700 21px Georgia,serif;color:#fff;flex-shrink:0}
+nav a{display:flex;gap:11px;align-items:center;padding:10px 12px;border-radius:9px;font-weight:500;transition:background .15s}nav a i{font-style:normal;width:20px;text-align:center}nav a.on{background:var(--teal);color:#fff}.sp{flex:1}
+main{max-width:1180px;margin:0 auto;padding:28px}.top{margin-bottom:18px}
+.who{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--bd);border-radius:30px;padding:4px 14px 4px 4px;font-size:13px}.who small{display:block;color:var(--mu);text-transform:capitalize}.av{width:34px;height:34px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:700}
+.card{border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(20,40,75,.06),0 6px 18px rgba(20,40,75,.05)}.card h3{font-size:16px;margin-bottom:12px}
+.hero{background:var(--navy);color:#fff;border-radius:16px;padding:22px 26px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;border-left:6px solid var(--gold)}.hero h3{color:#fff}
+.b{font-weight:600;border-radius:9px;padding:10px 16px;transition:filter .15s}.b:hover{filter:brightness(1.1)}.b.w{background:#fff;color:#14284b;margin:2px}.b.d{border-radius:7px}
+.kpi{border-top:4px solid var(--teal)}.kpi:nth-child(2){border-top-color:var(--gold)}.kpi:nth-child(3){border-top-color:#4b7bec}.kpi:nth-child(4){border-top-color:#e5646a}.kpi b{font-size:28px;color:var(--tx)}
+th{background:rgba(20,40,75,.05);font-size:12px}th:first-child{border-radius:8px 0 0 8px}th:last-child{border-radius:0 8px 8px 0}tbody tr:hover{background:rgba(31,157,143,.07)}td{white-space:normal}
+input,select,textarea{border-radius:9px;padding:10px;transition:border-color .15s}input:focus,select:focus,textarea:focus{border-color:var(--teal)}
+.empty{text-align:center;padding:28px;color:var(--mu);background:rgba(20,40,75,.03);border-radius:10px}.msg{border-radius:10px;font-weight:500}
+.login{max-width:920px;display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin:6vh auto;align-items:start}.brand{grid-row:span 2;background:var(--navy);color:#fff;border-radius:18px;padding:40px 34px;min-height:380px;display:flex;flex-direction:column;justify-content:center;border-bottom:6px solid var(--gold)}.brand h1{font-size:30px;line-height:1.2;margin:20px 0 10px}.brand p{color:#cfd8ea;margin:0}
+@media(max-width:760px){.login{grid-template-columns:1fr;margin:3vh auto}.brand{grid-row:auto;min-height:0;padding:24px}nav{position:sticky;top:0;z-index:5;height:auto;flex-direction:row;overflow-x:auto;gap:4px;padding:8px}nav a{white-space:nowrap;padding:8px 12px}.brandrow,.sp{display:none}main{padding:14px}.hero{padding:16px}}
+@media print{nav,.top button,.noprint{display:none!important}body{background:#fff;color:#000}}
+.ferr{grid-column:1/-1;color:var(--red);font-size:13px}.ferr:empty{display:none}input[aria-invalid=true]{border-color:var(--red)}.row{display:flex;gap:6px}
+@media print{body.p1 main>*:not(.pr){display:none!important}}
+html{font-size:17px}body{font-size:1rem;line-height:1.6}h2{font-size:1.5rem}h3{font-size:1.1rem}
+label{font-size:.95rem;color:var(--tx);font-weight:600;margin-bottom:2px}.note{font-size:.9rem}
+input,select,textarea{min-height:48px;font-size:1rem;border:2px solid var(--bd);margin-top:4px}input:focus,select:focus,textarea:focus{border-color:var(--teal);outline:3px solid rgba(31,157,143,.25)}
+input[type=checkbox],input[type=radio]{min-height:0;width:24px;height:24px;margin:0 8px 0 0;vertical-align:middle;accent-color:var(--teal)}
+.b{min-height:46px;font-size:1rem;padding:10px 18px}.b.s{border-width:2px}.b.d{min-height:40px;padding:6px 12px;border-width:2px}.b.big{min-height:54px;font-size:1.1rem;width:100%}.row .b.big{width:auto;flex:1}
+th{font-size:.85rem}td,th{padding:10px 8px}nav a{font-size:1rem;padding:13px 14px}nav a i{font-size:1.2rem;width:26px}
+.tag{font-size:.82rem;padding:2px 10px}.f.one{display:flex;flex-direction:column;gap:14px;align-items:stretch;max-width:560px}
+.chk{display:flex;align-items:center;font-weight:500;padding:6px 0}fieldset{border:2px solid var(--bd);border-radius:10px;padding:10px 14px}legend{font-weight:600;padding:0 6px}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.tools .b{min-height:42px;padding:6px 12px}
+.intro{background:#fff7e0;color:#5a4300;border-left:6px solid var(--gold);border-radius:10px;padding:12px 16px;margin-bottom:16px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .intro{background:#3a3115;color:#ffe9a8}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:16px;background:var(--card);color:var(--tx);border:2px solid var(--bd);border-radius:14px;cursor:pointer;min-height:130px;transition:transform .12s,border-color .12s}.tile:hover,.tile:focus-visible{border-color:var(--teal);transform:translateY(-2px)}.tile i{font-style:normal;font-size:2rem}.tile b{font-size:1.05rem}.tile span{color:var(--mu);font-size:.9rem;line-height:1.35}
+.step{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--bd);flex-wrap:wrap}.step:last-of-type{border:0}.step .n{width:38px;height:38px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:700;flex-shrink:0}.step.ok .n{background:transparent;font-size:1.4rem}.step b{flex:1;min-width:160px}
+.credbox{display:grid;gap:10px;margin:12px 0}.credbox div{background:rgba(31,157,143,.1);border:2px dashed var(--teal);border-radius:10px;padding:10px 14px;font-size:.9rem}.credbox b{display:block;font-size:1.25rem;word-break:break-all;letter-spacing:.03em}
+.pwl{list-style:none;margin:0;padding:0;font-size:.95rem}.login.one{display:block;max-width:560px}.login.one .card{padding:26px}
+@media(max-width:760px){nav a{display:flex;flex-direction:column;gap:2px;font-size:.8rem;text-align:center;min-width:76px;padding:8px 6px}nav a i{width:auto}.tools .b:not(:nth-child(-n+2)){flex:1}}
+@media print{.cred{border:2px solid #000}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* === Refonte : identité tunisienne, lisibilité maximale (skill ui-ux-pro-max : Minimalism & Swiss, contrastes AA, cibles 48px) === */
+:root{--primary:#0B5CAB;--primary-d:#084783;--navy:#0A2A55;--teal:var(--primary);--brand:#C8102E;--red:#A50E26;--gold:#E9A820;--bg:#F4F6FA;--card:#fff;--tx:#14213D;--mu:#4A5870;--bd:#CBD5E4;--ok:#14663A;--ok-bg:#E3F4EA;--warn:#8A4B00;--warn-bg:#FFF1D6;--err-bg:#FDECEF;--info-bg:#E6EFF9;--r:14px;color-scheme:light}
+body{font-family:Tajawal,"Noto Sans Arabic","Segoe UI",system-ui,sans-serif;font-size:1.06rem;background:var(--bg);color:var(--tx)}
+body::before{content:"";display:block;height:5px;background:var(--brand)}
+h2,h3,nav h1,.hero h3{font-family:Tajawal,"Noto Sans Arabic",system-ui,sans-serif;font-weight:700;letter-spacing:0}h2{font-size:1.6rem}
+*:focus-visible{outline:3px solid var(--primary);outline-offset:2px}nav :focus-visible,.hero :focus-visible,.brand :focus-visible{outline-color:#fff}
+.ic{width:1.3em;height:1.3em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.28em;flex-shrink:0;margin-right:.35em}
+nav i .ic,.tile i .ic,.tabbar i .ic,.srow i .ic{margin:0}
+.b{background:var(--primary);border:2px solid var(--primary);color:#fff;border-radius:12px;font-weight:700;transition:background .15s,transform .1s}.b:hover{background:var(--primary-d);border-color:var(--primary-d);filter:none}.b:active{transform:scale(.98)}
+.b.s{background:#fff;color:var(--primary)}.b.s:hover{background:var(--info-bg)}
+.b.d{background:#fff;color:var(--red);border:2px solid var(--red)}.b.d:hover{background:var(--err-bg)}
+.b[disabled]{opacity:.5;cursor:not-allowed}.b,.tile,nav a,.tabbar a,.srow,summary{cursor:pointer}
+input,select,textarea{border:2px solid #8DA0BC;border-radius:12px;background:#fff;color:var(--tx)}input:hover,select:hover,textarea:hover{border-color:var(--primary)}input:focus,select:focus,textarea:focus{border-color:var(--primary);outline:3px solid rgba(11,92,171,.25)}
+input[aria-invalid=true]{border-color:var(--red)}.ferr{color:var(--red);font-weight:600;font-size:.95rem}.ferr:not(:empty){background:var(--err-bg);padding:10px 12px;border-radius:10px;border-left:5px solid var(--red)}
+.card{border:1px solid var(--bd);border-radius:var(--r);box-shadow:0 1px 2px rgba(10,42,85,.06)}
+.msg{border-radius:12px;font-weight:600;border-left:6px solid}.msg.ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}.msg.er{background:var(--err-bg);color:var(--red);border-color:var(--red)}
+.tag{background:var(--info-bg);color:#084783;font-weight:700}.tag.w{background:var(--warn-bg);color:var(--warn)}
+.intro{background:var(--info-bg);color:#0A2A55;border-left:6px solid var(--primary)}.intro .ic{color:var(--primary)}
+th{background:var(--info-bg);color:#0A2A55;font-size:.88rem}td,th{border-bottom:1px solid var(--bd)}tbody tr:hover{background:#F0F5FB}
+/* Barre latérale */
+nav.side{background:var(--navy);width:268px}nav.side .brandrow b{font-size:1.02rem;line-height:1.25}nav.side .brandrow small{color:#CFDCF0;font-size:.85rem}
+nav.side a{color:#E6EEF9;border-radius:12px;padding:12px 14px;margin-bottom:3px;font-weight:500;border-left:4px solid transparent}nav.side a:hover{background:rgba(255,255,255,.1);color:#fff}
+nav.side a.on{background:#fff;color:var(--navy);font-weight:700;border-left-color:var(--brand)}nav.side a i .ic{width:24px;height:24px}
+.logo{background:var(--brand);border-radius:14px;width:46px;height:46px;display:grid;place-items:center;flex-shrink:0}.logo svg{width:30px;height:30px}
+.ar{font-family:Tajawal,"Noto Sans Arabic",sans-serif;direction:rtl;unicode-bidi:isolate}
+.brand,.hero{background-color:var(--navy);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72' fill='none' stroke='white' stroke-opacity='.11' stroke-width='1.5'%3E%3Crect x='16' y='16' width='40' height='40'/%3E%3Crect x='16' y='16' width='40' height='40' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='5'/%3E%3C/svg%3E")}
+.brand{border-bottom:6px solid var(--brand);color:#fff}.brand h1{font-size:2rem}.brand p{color:#E1EAF7;font-size:1.05rem}.brand .ar{font-size:1.25rem;margin-top:14px;color:#fff;font-weight:700}
+.hero{border-left:8px solid var(--brand);border-radius:var(--r)}.hero p{opacity:.95}
+.who{border:2px solid var(--bd)}.av{background:var(--primary)}
+.top{align-items:flex-start}.ttl{display:flex;flex-direction:column;gap:6px;align-items:flex-start}.back{background:none;border:0;color:var(--primary);font-weight:700;padding:6px 0;min-height:44px;font-size:1rem;display:inline-flex;align-items:center}.back:hover{text-decoration:underline}
+.tools .b{min-height:44px}
+/* Grandes tuiles */
+.tile{border:2px solid var(--bd);border-radius:16px;min-height:150px;gap:6px}.tile:hover,.tile:focus-visible{border-color:var(--primary);box-shadow:0 4px 14px rgba(11,92,171,.15);transform:none}
+.tile i{width:56px;height:56px;border-radius:14px;background:var(--info-bg);color:var(--primary);display:grid;place-items:center;margin-bottom:6px}.tile i .ic{width:30px;height:30px}.tile b{font-size:1.1rem}.tile span{color:var(--mu);font-size:.95rem}
+.step .n{background:var(--primary)}.step.ok .n{background:none;color:var(--ok)}.step.ok .n .ic{width:34px;height:34px;margin:0}
+.kpi{border-top:5px solid var(--primary)}.kpi:nth-child(2){border-top-color:var(--brand)}.kpi:nth-child(3){border-top-color:var(--gold)}.kpi:nth-child(4){border-top-color:var(--ok)}
+.credbox div{background:var(--info-bg);border:2px dashed var(--primary)}
+/* Menu du bas (mobile) */
+.tabbar,.sheet{display:none}
+@media(max-width:760px){
+ .app{display:block}nav.side{display:none}main{padding:14px 14px calc(96px + env(safe-area-inset-bottom,0px))}
+ .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:15;background:#fff;border-top:3px solid var(--brand);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 16px rgba(10,42,85,.12)}
+ .tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:56px;justify-content:center;text-decoration:none;color:var(--mu);font-size:.78rem;font-weight:600;border-radius:12px;padding:4px 2px}.tabbar a i{font-style:normal}.tabbar a i .ic{width:26px;height:26px}.tabbar a.on{color:var(--primary);background:var(--info-bg)}.tabbar a:focus-visible{outline-color:var(--primary)}
+ .sheet{display:block;position:fixed;inset:0;z-index:30;background:rgba(10,30,60,.55)}.sheet>div{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:22px 22px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px));max-height:85vh;overflow:auto}
+ .sheethead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:1.15rem}
+ .srow{display:flex;align-items:center;gap:14px;padding:14px 10px;min-height:56px;border-bottom:1px solid var(--bd);color:var(--tx);text-decoration:none;font-weight:600}.srow i{font-style:normal;color:var(--primary)}.srow i .ic{width:26px;height:26px}.srow.out{color:var(--red);border:0}.srow.out i{color:var(--red)}
+ .tools .hm{display:none}.top{flex-direction:column}
+ .tw table,.tw thead,.tw tbody,.tw tr,.tw td{display:block;width:100%}.tw thead{position:absolute;left:-9999px}
+ .tw tr{border:1px solid var(--bd);border-radius:14px;margin-bottom:12px;padding:6px 14px;background:#fff}.tw td{display:flex;justify-content:space-between;align-items:center;gap:14px;border:0;padding:8px 0;border-bottom:1px dashed var(--bd);text-align:right}.tw td:last-child{border:0}.tw td::before{content:attr(data-l);font-weight:700;color:var(--mu);text-align:left;flex:0 0 38%}.tw td[data-l=""]::before{display:none}.tw td[data-l=""]{justify-content:flex-start}
+ .login{margin:2vh auto}.f.one{max-width:none}
+}
+@media(min-width:761px){.login:not(.one){display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1000px;margin:5vh auto;align-items:start}.login:not(.one) .brand{grid-row:1/span 2;align-self:stretch;display:flex;flex-direction:column;justify-content:center;padding:44px 36px}.login:not(.one) .brand h1{margin:18px 0 12px}}
+.login.one{max-width:560px;margin:5vh auto}
+nav.side{position:sticky;top:0;height:100vh;overflow-y:auto}nav.side .brandrow small{display:block}nav.side .brandrow .ar{margin-top:2px;font-size:.95rem;color:#fff}
+@media(max-width:760px){.tabbar a{font-size:.74rem;letter-spacing:-.01em}.tiles{gap:10px}.tile{display:grid;grid-template-columns:56px 1fr;column-gap:14px;row-gap:0;align-items:center;min-height:0;padding:12px 14px}.tile i{grid-row:1/3;margin:0}.tile b{align-self:end}.tile span{align-self:start}}
+@media print{body::before,.tabbar,.sheet,.back{display:none!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"></head><body><div id="root"></div>
+<script>
+const e=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CUR='TND';
+const pwRules=[['Au moins 8 caractères',p=>p.length>=8],['Une lettre majuscule (A, B, C…)',p=>/[A-Z]/.test(p)],['Une lettre minuscule (a, b, c…)',p=>/[a-z]/.test(p)],['Un chiffre (1, 2, 3…)',p=>/\d/.test(p)],['Aucun espace',p=>!/\s/.test(p)]];
+const pwErr=p=>{const r=pwRules.find(x=>!x[1](p));return r?'Le mot de passe doit avoir : '+r[0].toLowerCase()+'.':''};
+const pwHint=i=>{const l=document.getElementById('pwl');if(l)l.innerHTML=pwRules.map(r=>`<li>${r[1](i.value)?'✅':'⬜'} ${r[0]}</li>`).join('');iconize(l)};
+let U=null,flash=null,R='dash';
+const COLS=['users','classes','affect','matieres','salles','eleves','notes','edt','paiements','devoirs','depots','msgs','absences','tarifs','annonces','notifs','audit'];
+const emptyDB=()=>{const d={};COLS.forEach(c=>d[c]=[]);return d};
+let DB=emptyDB(),ED=null,SETUP=false,BOOTED=false,SNAP={},FQ=Promise.resolve(),POLL=null;
+const kOf=(c,r)=>c==='depots'?r.hid+'|'+r.sid:r.id;
+const snap=()=>{const s={};COLS.forEach(c=>s[c]=new Map((DB[c]||[]).map(r=>[kOf(c,r),JSON.stringify(r)])));return s};
+async function api(m,u,b){try{const r=await fetch(u,{method:m,headers:b?{'Content-Type':'application/json'}:{},body:b?JSON.stringify(b):undefined,credentials:'same-origin'});const j=await r.json().catch(()=>({}));return{...j,ok:r.ok,status:r.status}}catch(x){return{ok:false,status:0,error:'Connexion au serveur impossible. Vérifiez votre connexion internet.'}}}
+function diff(){const ops=[];COLS.forEach(c=>{const cur=new Map((DB[c]||[]).map(r=>[kOf(c,r),JSON.stringify(r)])),old=SNAP[c]||new Map();cur.forEach((j,k)=>{if(old.get(k)!==j)ops.push({c,k:'set',row:JSON.parse(j)})});old.forEach((j,k)=>{if(!cur.has(k))ops.push({c,k:'del',row:JSON.parse(j)})})});return ops}
+async function flush(){const ops=diff();if(!ops.length)return;const r=await api('POST','/api/ops',{ops});
+ if(r.ok){ops.forEach(o=>{const k=kOf(o.c,o.row);if(o.k==='set')SNAP[o.c].set(k,JSON.stringify(o.row));else SNAP[o.c].delete(k)});return}
+ if(r.status===401){U=null;DB=emptyDB();msg('Votre session a expiré. Reconnectez-vous.','er');draw();return}
+ alert((r.error||'Enregistrement impossible.')+'\nLes données ont été rechargées depuis le serveur.');await reload();draw()}
+const save=()=>{FQ=FQ.then(flush).catch(()=>{})};
+async function reload(){const s=await api('GET','/api/state');if(s.ok){DB=s.state;U=s.me;SNAP=snap()}else if(s.status===401){U=null;DB=emptyDB();const q=await api('GET','/api/session');SETUP=!!q.setup}}
+async function boot(){const q=await api('GET','/api/session');SETUP=!!q.setup;if(q.me){await reload();R='dash'}else if(!q.ok)msg(q.error||'Serveur indisponible.','er');BOOTED=true;draw();startPoll()}
+function startPoll(){if(POLL)return;POLL=setInterval(poll,20000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)poll()})}
+async function poll(){if(!U||document.hidden)return;await FQ;if(diff().length)return;const s=await api('GET','/api/state');
+ if(s.status===401){U=null;DB=emptyDB();msg('Votre session a expiré. Reconnectez-vous.','er');draw();return}if(!s.ok)return;
+ if(JSON.stringify(s.state)===JSON.stringify(DB)&&JSON.stringify(s.me)===JSON.stringify(U))return;
+ DB=s.state;U=s.me;SNAP=snap();const a=document.activeElement;if(!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))&&!ED&&!MORE)draw()}
+const syncDB=()=>{poll()};
+function mkAccount(f,body,okMsg){api('POST','/api/admin/account',body).then(async r=>{if(!r.ok)return FE(f,r.error||'Création impossible.');CRED={nom:r.user.nom,login:r.user.login,pw:r.pw,role:r.user.role};AF='';await reload();done(okMsg)});return false}
+function resetPw(id){const u=DB.users.find(x=>x.id===id);if(U.role!=='admin'||!u)return;
+ if(u.id===U.id){msg('Pour votre propre mot de passe, utilisez « Mon compte ».','er');draw();return}
+ if(confirm('Créer un nouveau mot de passe provisoire pour '+u.nom+' ? L’ancien ne fonctionnera plus.'))api('POST','/api/admin/reset',{id}).then(async r=>{if(!r.ok){msg(r.error||'Impossible.','er');draw();return}CRED={nom:r.nom,login:r.login,pw:r.pw,role:r.role};await reload();msg('Nouveau mot de passe provisoire créé.');draw()})}
+function savePwd(f){const o=f.o.value.trim(),n=f.n.value,c=f.c.value;
+ const er=pwErr(n);if(er)return FE(f,er,'n');if(n===o)return FE(f,'Le nouveau mot de passe doit être différent de l’ancien.','n');
+ if(n.toLowerCase()===U.login)return FE(f,'Le mot de passe ne doit pas être votre identifiant.','n');if(n!==c)return FE(f,'Les deux mots de passe ne sont pas identiques.','c');
+ api('POST','/api/password',{old:o,password:n}).then(async r=>{if(!r.ok)return FE(f,r.error||'Changement impossible.','o');await reload();R='dash';msg('Votre mot de passe a été changé.');draw()});return false}
+function login(f){const l=f.l.value.trim().toLowerCase(),pw=f.p.value.trim();
+ api('POST','/api/login',{login:l,password:pw}).then(async r=>{if(!r.ok){msg(r.error||'Connexion impossible.','er');draw();return}await reload();R='dash';flash=null;draw();startPoll()});return false}
+function logout(){api('POST','/api/logout').then(async()=>{U=null;CRED=null;MORE=false;DB=emptyDB();const q=await api('GET','/api/session');SETUP=!!q.setup;draw()})}
+function setupSend(f){const k=f.k.value,nm=sp(f.nm.value),l=f.l.value.trim().toLowerCase(),n=f.n.value,c=f.c.value;
+ if(!k)return FE(f,'Écrivez le code d’installation.','k');if(!/^\p{L}[\p{L}'’. -]{2,59}$/u.test(nm))return FE(f,'Nom invalide : 3 à 60 lettres.','nm');
+ if(!/^[a-z0-9._-]{3,20}$/.test(l))return FE(f,'Identifiant : 3 à 20 caractères (lettres minuscules, chiffres, point, tiret).','l');
+ const er=pwErr(n);if(er)return FE(f,er,'n');if(n!==c)return FE(f,'Les deux mots de passe ne sont pas identiques.','c');
+ api('POST','/api/setup',{code:k,nom:nm,login:l,password:n}).then(async r=>{if(!r.ok)return FE(f,r.error||'Installation impossible.','k');await reload();SETUP=false;R='dash';msg('Bienvenue ! Le compte administrateur est créé. Commencez par créer les classes.');draw();startPoll()});return false}
+function readPdf(inp,ok,ko){const fl=inp&&inp.files&&inp.files[0];if(!fl)return ko('Sélectionnez un fichier PDF.');
+ if(!/\.pdf$/i.test(fl.name)||(fl.type&&fl.type!=='application/pdf'))return ko('Format refusé : seul le format PDF est accepté.');
+ if(fl.size<100)return ko('Fichier vide ou invalide.');if(fl.size>MAXF)return ko('Fichier trop volumineux ('+Math.round(fl.size/1024)+' Ko) : maximum 800 Ko.');
+ const r=new FileReader();r.onerror=()=>ko('Lecture du fichier impossible.');
+ r.onload=()=>{api('POST','/api/file',{name:fl.name,data:String(r.result)}).then(x=>x.ok?ok({name:x.name,fid:x.fid}):ko(x.error||'Envoi du fichier impossible.'))};r.readAsDataURL(fl)}
+function dl(p){fetch('/api/file/'+encodeURIComponent(p.fid),{credentials:'same-origin'}).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(b=>{const u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=p.name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}).catch(()=>{msg('Téléchargement impossible.','er');draw()})}
+
+const ROLEFR={admin:'Administrateur',enseignant:'Enseignant(e)',parent:'Parent',eleve:'Élève',comptable:'Comptable / secrétariat'},ROLES=Object.keys(ROLEFR);
+let CRED=null,AF='',FS=17;try{FS=+localStorage.getItem('ecole-fs')||17}catch(x){}document.documentElement.style.fontSize=FS+'px';
+const zoom=d=>{FS=Math.min(24,Math.max(14,FS+d*2));document.documentElement.style.fontSize=FS+'px';try{localStorage.setItem('ecole-fs',FS)}catch(x){}};
+const DESC={classes:'Créez les classes et les matières, puis choisissez quel enseignant enseigne quelle matière dans quelle classe',eleves:'Ajoutez les élèves de l’école et modifiez leurs informations',enseignants:'Voyez la liste des enseignants et leurs classes',comptes:'Donnez un accès (identifiant et mot de passe) aux enseignants, parents, élèves et au comptable',salles:'Gérez les salles de classe',edt:'Consultez les cours de la semaine',absences:'Consultez ou enregistrez les absences',paie:'Paiements, reçus et sommes restant à payer',tarifs:'Prix de l’inscription et de la scolarité pour chaque niveau',devoirs:'Devoirs à faire, travaux rendus et corrections',msgs:'Écrivez et lisez des messages',annonces:'Informations de l’école pour tout le monde',audit:'Qui a fait quoi, et à quelle date',notes:'Notes, moyennes et bulletins',mesclasses:'Vos classes et leurs élèves'};
+const INTRO={...DESC,comptes:DESC.comptes+'. Un mot de passe provisoire est créé : la personne le changera elle-même à sa première connexion',compte:'Changez ici votre mot de passe quand vous le souhaitez',aide:'Un guide simple, étape par étape'};
+const GUIDE={admin:[['Créez les classes','Menu « Classes & matières » : ajoutez CP, CE1, CE2… puis les matières.'],['Ajoutez les enseignants','Menu « Comptes utilisateurs » : choisissez « Enseignant », remplissez le nom et l’e-mail, puis appuyez sur « Créer le compte ».'],['Affectez les matières','Menu « Classes & matières », en bas : choisissez la classe, la matière et l’enseignant.'],['Ajoutez les élèves','Menu « Élèves » : écrivez le prénom, le nom, la date de naissance et choisissez la classe.'],['Créez les comptes des parents et des élèves','Menu « Comptes utilisateurs » : choisissez « Parent », cochez ses enfants, puis « Créer le compte ». Remettez la fiche imprimée à la personne.'],['Fixez les tarifs','Menu « Tarifs de scolarité » : indiquez le prix pour chaque niveau.']],
+enseignant:[['Voir vos classes','Menu « Mes classes » : la liste de vos élèves et de leurs parents.'],['Saisir une note','Menu « Notes & bulletins » : choisissez la classe, l’élève, écrivez la note, puis « Ajouter ».'],['Publier un devoir','Menu « Devoirs » : titre, date limite, description, puis « Publier ».'],['Corriger','Dans « Devoirs », ouvrez le travail déposé en PDF et appuyez sur « Corriger ».'],['Écrire à un parent','Menu « Messages » : choisissez le parent et l’élève concerné.']],
+parent:[['Voir les notes','Menu « Notes & bulletins » : un bulletin par enfant. Appuyez sur « Télécharger ce bulletin ».'],['Voir les devoirs et corrections','Menu « Devoirs ».'],['Justifier une absence','Menu « Absences » : appuyez sur « Justifier ».'],['Payer et suivre','Menu « Paiements » : sommes payées et reste à payer, reçus.'],['Écrire à l’école','Menu « Messages » : choisissez la personne et l’enfant concerné.']],
+eleve:[['Voir mes devoirs','Menu « Devoirs ».'],['Rendre mon travail','Dans un devoir, choisissez votre fichier PDF puis « Déposer le PDF ».'],['Voir mes notes','Menu « Notes & bulletins ».'],['Mon emploi du temps','Menu « Emploi du temps ».']],
+comptable:[['Enregistrer un paiement','Menu « Paiements » : choisissez l’élève, le montant et le mode de paiement.'],['Régler les prix','Menu « Tarifs de scolarité ».'],['Écrire à un parent','Menu « Messages ».']]};
+const tilesHtml=()=>`<div class="card"><h3>Que voulez-vous faire ?</h3><div class="tiles">${NAV[U.role].filter(r=>r!=='dash'&&DESC[r]).map(r=>`<button class="tile" onclick="go('${r}')"><i>${IC[r]}</i><b>${LBL[r]}</b><span>${DESC[r]}</span></button>`).join('')}</div></div>`;
+const firstSteps=()=>{if(U.role!=='admin')return '';const S=[['Créer les classes',DB.classes.length>0,'classes'],['Ajouter les enseignants',DB.users.some(u=>u.role==='enseignant'),'comptes'],['Ajouter les élèves',DB.eleves.length>0,'eleves'],['Créer les comptes des parents',DB.users.some(u=>u.role==='parent'),'comptes'],['Vérifier les tarifs',DB.tarifs.length>0,'tarifs']];
+ if(S.every(x=>x[1])&&DB.eleves.length)return '';
+ return `<div class="card"><h3>🚀 Pour bien commencer, faites ces étapes dans l’ordre</h3>${S.map((x,i)=>`<div class="step ${x[1]?'ok':''}"><span class="n">${x[1]?'✅':i+1}</span><b>${x[0]}</b>${x[1]?'<span class="tag">Fait</span>':`<button class="b" onclick="go('${x[2]}')">Commencer</button>`}</div>`).join('')}</div>`};
+const credCard=()=>`<div class="card cred"><h3>✅ Compte prêt : ${e(CRED.nom)} (${ROLEFR[CRED.role]})</h3><p>Donnez ces informations à la personne. <b>Le mot de passe provisoire ne sera plus affiché</b> : elle devra en choisir un nouveau à sa première connexion.</p><div class="credbox"><div>Adresse du site<b>${e(location.href.split('#')[0])}</b></div><div>Identifiant<b>${e(CRED.login)}</b></div><div>Mot de passe provisoire<b>${e(CRED.pw)}</b></div></div><div class="row noprint" style="flex-wrap:wrap"><button class="b" onclick="printEl('.cred')">🖨️ Imprimer la fiche</button><button class="b s" onclick="copyCred()">📋 Copier</button><button class="b s" onclick="CRED=null;draw()">Fermer</button></div></div>`;
+function printEl(sel){const el=document.querySelector(sel);if(!el)return;document.querySelectorAll('.pr').forEach(x=>x.classList.remove('pr'));el.classList.add('pr');document.body.classList.add('p1');window.addEventListener('afterprint',()=>{el.classList.remove('pr');document.body.classList.remove('p1')},{once:true});window.print()}
+function copyCred(){const t='Identifiant : '+CRED.login+'\nMot de passe provisoire : '+CRED.pw+'\nSite : '+location.href.split('#')[0];(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{msg('Informations copiées.');draw()},()=>{msg('Copie impossible : recopiez les informations à la main.','er');draw()})}
+const loginOf=nom=>{let b=nom.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/^(m|mme|mlle)\.?\s+/,'').replace(/[^a-z0-9]+/g,'.').replace(/^\.|\.$/g,'').slice(0,17)||'user',l=b,i=1;while(DB.users.some(u=>u.login===l))l=b+(++i);return l};
+const refs=u=>[['classes',DB.classes.filter(c=>c.titulaire===u.id)],['affectations',DB.affect.filter(a=>a.prof===u.id)],['cours',DB.edt.filter(t=>t.prof===u.id)],['notes',DB.notes.filter(n=>n.prof===u.id)],['devoirs',DB.devoirs.filter(d=>d.prof===u.id)],['absences',DB.absences.filter(a=>a.prof===u.id)],['messages',DB.msgs.filter(m=>m.de===u.id||m.a===u.id)]].filter(x=>x[1].length);
+const lastAdmin=u=>u.role==='admin'&&DB.users.filter(x=>x.role==='admin'&&x.actif).length<2;
+function roleSel(f){const r=f.ro.value;f.querySelector('.rn').style.display=r==='eleve'?'none':'';f.querySelector('.rp').style.display=r==='parent'?'':'none';f.querySelector('.re').style.display=r==='eleve'?'':'none'}
+function saveAcc(f,id){if(U.role!=='admin')return FE(f,'Action réservée à l’administration.');
+ const old=id&&DB.users.find(x=>x.id===id);if(id&&!old)return FE(f,'Compte introuvable.');
+ const ro=id?old.role:f.ro.value;if(!ROLES.includes(ro))return FE(f,'Choisissez le type de compte.','ro');
+ let nom=sp(f.nm.value),sid=null,en=[];
+ if(ro==='eleve'){sid=f.sid.value;const s=stu(sid);if(!s)return FE(f,'Choisissez l’élève (ajoutez-le d’abord dans le menu « Élèves »).','sid');if(DB.users.some(u=>u.role==='eleve'&&u.sid===sid&&u.id!==id))return FE(f,'Cet élève a déjà un compte.','sid');nom=s.prenom+' '+s.nom}
+ else if(!/^\p{L}[\p{L}'’. -]{2,59}$/u.test(nom))return FE(f,'Le nom n’est pas correct : écrivez 3 à 60 lettres, sans chiffres.','nm');
+ if(ro==='parent'){en=[...f.querySelectorAll('input[name=en]:checked')].map(x=>x.value).filter(i=>stu(i));if(!en.length)return FE(f,'Cochez au moins un enfant (ajoutez d’abord les élèves dans le menu « Élèves »).')}
+ const em=f.em.value.trim().toLowerCase(),tl=f.tl.value.replace(/[\s.-]/g,'');
+ if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/.test(em))return FE(f,'L’adresse e-mail n’est pas correcte (exemple : nom@exemple.com).','em');
+ if(tl&&!/^(\+216)?\d{8}$/.test(tl))return FE(f,'Le téléphone doit avoir 8 chiffres (exemple : 20 123 456).','tl');
+ if(DB.users.some(u=>u.id!==id&&u.email===em))return FE(f,'Cette adresse e-mail est déjà utilisée par un autre compte.','em');
+ if(old){Object.assign(old,{nom,email:em,tel:tl});if(ro==='parent')old.enfants=en;if(ro==='eleve')old.sid=sid;log('Compte modifié',nom);return done('Compte modifié.')}
+ const body={role:ro,nom,email:em,tel:tl};if(ro==='parent')body.enfants=en;if(ro==='eleve')body.sid=sid;
+ return mkAccount(f,body,'Le compte est créé. Notez le mot de passe provisoire ci-dessous.')}
+function toggleAcc(id){const u=DB.users.find(x=>x.id===id);if(U.role!=='admin'||!u)return;
+ if(u.id===U.id){msg('Vous ne pouvez pas désactiver votre propre compte.','er');draw();return}
+ if(u.actif&&lastAdmin(u)){msg('Il doit toujours rester au moins un administrateur actif.','er');draw();return}
+ if(confirm((u.actif?'Désactiver':'Réactiver')+' le compte de '+u.nom+' ?'+(u.actif?' Cette personne ne pourra plus se connecter.':''))){u.actif=!u.actif;log(u.actif?'Compte réactivé':'Compte désactivé',u.nom);save();msg(u.actif?'Compte réactivé.':'Compte désactivé.');draw()}}
+const pwForm=(forced)=>`<form class="f one" novalidate onsubmit="return savePwd(this)"><label>${forced?'Mot de passe provisoire (celui qu’on vous a remis)':'Mot de passe actuel'}<input name="o" type="password" required autocomplete="current-password"></label><label>Nouveau mot de passe<input name="n" type="password" required autocomplete="new-password" oninput="pwHint(this)"></label><ul id="pwl" class="pwl">${pwRules.map(r=>`<li>⬜ ${r[0]}</li>`).join('')}</ul><label>Écrivez-le une deuxième fois<input name="c" type="password" required autocomplete="new-password"></label><div class="ferr" role="alert"></div><div class="row" style="flex-wrap:wrap"><button class="b big">✔ Enregistrer</button>${forced?'<button type="button" class="b s" onclick="logout()">Se déconnecter</button>':''}</div></form>`;
+
+const log=(a,d)=>{DB.audit.unshift({id:uid('L'),t:new Date().toLocaleString('fr-FR'),u:U.nom,a,d});save()};
+const uid=p=>p+Math.random().toString(36).slice(2,8);
+const notify=(to,txt)=>{DB.notifs.unshift({id:uid('N'),to,txt,date:new Date().toLocaleDateString('fr-FR'),lu:false})};
+const money=n=>new Intl.NumberFormat('fr-FR',{style:'currency',currency:CUR}).format(n);
+const nm=id=>{const u=DB.users.find(x=>x.id===id);return u?u.nom:id};
+const stu=id=>DB.eleves.find(x=>x.id===id);const sn=id=>{const s=stu(id);return s?s.prenom+' '+s.nom:id};
+const tarif=sid=>{const s=stu(sid),c=s&&DB.classes.find(x=>x.id===s.classe);return c&&DB.tarifs.find(t=>t.annee===s.annee&&t.niveau===c.niveau)};
+const total=sid=>{const t=tarif(sid);return t?t.inscription+t.scolarite:0};
+const paye=sid=>Math.round(DB.paiements.filter(p=>p.sid===sid).reduce((a,p)=>a+p.montant,0)*100)/100;
+const solde=sid=>Math.round((total(sid)-paye(sid))*100)/100;
+// Visible students per role (server-side rules in a real backend)
+const tcl=u=>[...new Set([...DB.classes.filter(c=>c.titulaire===u.id).map(c=>c.id),...DB.affect.filter(a=>a.prof===u.id).map(a=>a.classe)])];
+const mine=()=>{const r=U.role;if(r==='admin'||r==='comptable')return DB.eleves;if(r==='enseignant')return DB.eleves.filter(s=>tcl(U).includes(s.classe));if(r==='parent')return DB.eleves.filter(s=>U.enfants.includes(s.id));return DB.eleves.filter(s=>s.id===U.sid)};
+const ids=()=>mine().map(s=>s.id);
+function moyennes(sid){const by={};DB.notes.filter(n=>n.sid===sid).forEach(n=>(by[n.mat]=by[n.mat]||[]).push(n.val));
+ let num=0,den=0;const rows=Object.keys(by).map(m=>{const a=by[m].reduce((x,y)=>x+y,0)/by[m].length,c=DB.matieres.find(x=>x.id===m).coef;num+=a*c;den+=c;return{m,a,c}});
+ return{rows,gen:den?num/den:null}}
+const NAV={admin:['dash','comptes','classes','eleves','enseignants','salles','edt','absences','paie','tarifs','devoirs','msgs','annonces','audit'],enseignant:['dash','mesclasses','edt','notes','absences','devoirs','msgs'],parent:['dash','notes','absences','edt','paie','devoirs','msgs','annonces'],eleve:['dash','edt','devoirs','notes','msgs','annonces'],comptable:['dash','eleves','paie','tarifs','msgs']};
+const IC={dash:'🏠',eleves:'🎒',classes:'🏫',mesclasses:'🏫',comptes:'👥',compte:'🔑',aide:'❓',absences:'🕒',tarifs:'💰',salles:'🚪',enseignants:'👩‍🏫',edt:'🗓️',notes:'📝',paie:'💳',devoirs:'📚',msgs:'✉️',annonces:'📣',audit:'🔍'};
+const QA={admin:[['eleves','Ajouter un élève'],['paie','Enregistrer un paiement'],['annonces','Publier une annonce']],enseignant:[['notes','Saisir des notes'],['devoirs','Publier un devoir']],parent:[['notes','Voir les bulletins'],['paie','Paiements'],['msgs','Écrire à l’école']],eleve:[['devoirs','Mes devoirs'],['edt','Emploi du temps']],comptable:[['paie','Enregistrer un paiement']]};
+const LBL={dash:'Accueil',eleves:'Élèves',classes:'Classes & matières',mesclasses:'Mes classes',comptes:'Comptes utilisateurs',compte:'Mon compte',aide:'Aide',absences:'Absences',tarifs:'Tarifs de scolarité',salles:'Salles',enseignants:'Enseignants',edt:'Emploi du temps',notes:'Notes & bulletins',paie:'Paiements',devoirs:'Devoirs',msgs:'Messages',annonces:'Annonces',audit:'Journal des actions'};
+function go(r){MORE=false;syncDB();if(!U){draw();return}CRED=null;if(!NAV[U.role].includes(r)&&r!=='compte'&&r!=='aide')return;ED=null;R=r;draw();window.scrollTo(0,0)}
+function msg(t,k='ok'){flash={t,k}}
+function draw(){const root=document.getElementById('root');
+ if(!BOOTED){root.innerHTML='<div class="login one"><div class="card"><div class="logo" style="margin-bottom:10px">'+LOGO+'</div><h2>Chargement…</h2><p>Un instant, l’application démarre.</p></div></div>';return}
+ if(!U&&SETUP){root.innerHTML=`<div class="login one"><div class="card"><div class="logo" style="margin-bottom:10px">${LOGO}</div><h2>Première installation</h2><p>Créez le compte de l’<b>administrateur</b> de l’école. Le <b>code d’installation</b> se trouve dans votre espace Render (variable <b>SETUP_CODE</b>).</p><form class="f one" novalidate onsubmit="return setupSend(this)"><label>Code d’installation<input name="k" type="password" required autocomplete="off"></label><label>Nom complet de l’administrateur<input name="nm" required maxlength="60" autocomplete="name"></label><label>Identifiant de connexion<input name="l" required maxlength="20" autocapitalize="none" placeholder="exemple : direction"></label><label>Mot de passe<input name="n" type="password" required autocomplete="new-password" oninput="pwHint(this)"></label><ul id="pwl" class="pwl">${pwRules.map(r=>`<li>⬜ ${r[0]}</li>`).join('')}</ul><label>Mot de passe (une deuxième fois)<input name="c" type="password" required autocomplete="new-password"></label><div class="ferr" role="alert"></div><button class="b big">Créer le compte administrateur</button></form></div></div>`;return}
+ if(!U){root.innerHTML=`<div class="login"><div class="brand"><div class="logo">${LOGO}</div><h1>Bienvenue à l’école Abou El Kacem Chebbi</h1><p>Suivez les notes, les devoirs, les absences, les paiements et les messages. Sur ordinateur comme sur téléphone.</p><p class="ar" lang="ar">مدرسة أبو القاسم الشابي الابتدائية</p></div><div class="card"><h2>🔓 Connexion</h2><p>Écrivez votre identifiant et votre mot de passe, puis appuyez sur le bouton bleu « Se connecter ».</p>
+ <form onsubmit="return login(this)"><label>Votre identifiant<input name="l" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="exemple : salma.benali"></label><label>Votre mot de passe<input name="p" id="lp" type="password" required autocomplete="current-password"></label><label class="chk"><input type="checkbox" onchange="document.getElementById('lp').type=this.checked?'text':'password'"> Voir le mot de passe</label>
+ ${flash?`<div class="msg er" role="alert">${e(flash.t)}</div>`:''}<button class="b big">Se connecter</button></form><p class="note">Pas encore de compte, ou mot de passe oublié ? Demandez à l’administration de l’école : elle vous remettra un identifiant et un mot de passe provisoire.</p></div></div>`;return}
+ if(U.must){root.innerHTML=`<div class="login one"><div class="card"><div class="logo" style="margin-bottom:10px">${LOGO}</div><h2>Bienvenue, ${e(U.nom)} 👋</h2><p>Pour protéger vos données, choisissez maintenant <b>votre propre mot de passe</b>. Vous l’utiliserez à chaque connexion.</p>${pwForm(true)}</div></div>`;return}
+ const V=VIEWS[R]||VIEWS.dash;const f=flash;flash=null;
+ root.innerHTML=`<div class="app"><nav class="side" aria-label="Navigation principale"><div class="brandrow"><div class="logo">${LOGO}</div><div><b>École Abou El Kacem Chebbi</b><br><small>Gestion scolaire</small><small class="ar" lang="ar">مدرسة أبو القاسم الشابي</small></div></div>${NAV[U.role].map(r=>`<a href="#" class="${r===R?'on':''}" onclick="go('${r}');return false"><i>${IC[r]}</i>${LBL[r]}</a>`).join('')}
+ <div class="sp"></div><a href="#" onclick="logout();return false"><i>⎋</i>Déconnexion</a></nav><main><div class="top"><div class="ttl">${R!=='dash'?'<button class="back" onclick="go(\'dash\')">← Retour à l’accueil</button>':''}<h2>${LBL[R]}</h2></div><div class="tools noprint"><button class="b s" onclick="zoom(-1)" aria-label="Réduire la taille du texte">A−</button><button class="b s" onclick="zoom(1)" aria-label="Agrandir la taille du texte">A+</button><button class="b s hm" onclick="go('aide')">❓ Aide</button><button class="b s hm" onclick="go('compte')">🔑 Mon compte</button><div class="who"><div class="av">${e(U.nom.replace(/^(M\.|Mme)\s/,'')[0])}</div><div>${e(U.nom)}<small>${ROLEFR[U.role]}</small></div></div></div></div>
+ ${f?`<div class="msg ${f.k}" role="status">${e(f.t)}</div>`:''}${CRED&&U.role==='admin'?credCard():''}${INTRO[R]?`<div class="intro">💡 ${INTRO[R]}</div>`:''}${V()}</main>${tabbar()}</div>`}
+const tbl=(h,rows)=>rows.length?`<div class="tw"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,j)=>`<td data-l="${e(h[j]||'')}">${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'<div class="empty">Rien à afficher pour le moment.</div>';
+const opts=(a,sel)=>a.map(x=>`<option value="${e(x[0])}" ${x[0]===sel?'selected':''}>${e(x[1])}</option>`).join('');
+const VIEWS={
+dash(){const a=U.role,s=mine(),k=[];
+ if(a==='admin'||a==='comptable'){const enc=DB.paiements.reduce((x,p)=>x+p.montant,0);k.push([DB.eleves.length,'élèves actifs'],[DB.classes.length,'classes'],[money(enc),'encaissé'],[money(DB.eleves.reduce((x,s)=>x+Math.max(0,solde(s.id)),0)),'impayés'])}
+ else if(a==='enseignant'){k.push([s.length,'élèves'],[DB.devoirs.filter(d=>tcl(U).includes(d.classe)).length,'devoirs publiés'],[DB.edt.filter(t=>t.prof===U.id).length,'cours / semaine'])}
+ else k.push(...s.map(x=>[!tarif(x.id)?'—':solde(x.id)>0?money(solde(x.id)):'Soldé','solde '+x.prenom]),[DB.devoirs.filter(d=>s.some(x=>x.classe===d.classe)).length,'devoirs']);
+ const nt=DB.notifs.filter(n=>n.to===U.id);
+ return `<div class="hero"><div><h3 style="font-size:21px;margin:0">Bonjour, ${e(U.nom)}</h3><p style="margin:4px 0 0;opacity:.8">Année scolaire 2026-2027 · ${new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}</p></div></div>${firstSteps()}${tilesHtml()}<div class="kpis">${k.map(x=>`<div class="card kpi"><b>${e(x[0])}</b><span>${e(x[1])}</span></div>`).join('')}</div>
+ <div class="card"><h3>Dernières annonces</h3>${tbl(['Date','Titre'],DB.annonces.map(x=>[e(x.date),e(x.titre)]))}</div>
+ <div class="card"><h3>Notifications</h3>${tbl(['Date','Message'],nt.map(n=>[n.date,e(n.txt)]))}</div>`},
+eleves(){const can=U.role==='admin',eid=ED&&ED.k==='eleve'?ED.id:null,s0=eid?stu(eid):null,rg=dRange();
+ return `${can?`<div class="card"><h3>${s0?'Modifier l’élève':'Ajouter un élève'}</h3><form class="f" novalidate onsubmit="return saveEleve(this,${s0?`'${s0.id}'`:'null'})"><label>Prénom<input name="p" required maxlength="40" autocomplete="off" value="${e(s0?s0.prenom:'')}"></label><label>Nom<input name="n" required maxlength="40" autocomplete="off" value="${e(s0?s0.nom:'')}"></label><label>Naissance (5 à 13 ans)<input name="d" type="date" required min="${rg.min}" max="${rg.max}" value="${e(s0?s0.naissance:'')}"></label><label>Classe<select name="c">${opts(DB.classes.map(c=>[c.id,c.id]),s0&&s0.classe)}</select></label><div class="row"><button class="b">${s0?'Enregistrer':'Inscrire'}</button>${s0?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div><div class="ferr" role="alert"></div></form></div>`:''}
+ <div class="card">${tbl(['Nom','Naissance','Classe','Solde',''],mine().map(s=>[e(s.prenom+' '+s.nom),e(s.naissance),e(s.classe),money(solde(s.id)),can?`<div class="row"><button class="b s" onclick="edit('eleve','${s.id}')">Modifier</button><button class="b d" onclick="delEleve('${s.id}')">Supprimer</button></div>`:'']))}</div>`},
+classes(){const c0=ED&&ED.k==='classe'?DB.classes.find(c=>c.id===ED.id):null,m0=ED&&ED.k==='mat'?DB.matieres.find(m=>m.id===ED.id):null,profs=DB.users.filter(u=>u.role==='enseignant');
+ const cancel='<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>';
+ return `<div class="card"><h3>${c0?'Modifier la classe '+e(c0.id):'Ajouter une classe'}</h3><form class="f" novalidate onsubmit="return saveClasse(this,${c0?`'${e(c0.id)}'`:'null'})"><label>Niveau<select name="v">${opts(NIV.map(x=>[x,x]),c0&&c0.niveau)}</select></label><label>Section (A à F)<input name="s" required maxlength="1" value="${e(c0?c0.section:'')}"></label><label>Capacité (5–40)<input name="c" type="number" min="5" max="40" step="1" required value="${c0?c0.cap:22}"></label><label>Titulaire<select name="t">${opts([['','— Aucun —'],...profs.map(u=>[u.id,u.nom])],c0&&c0.titulaire)}</select></label><div class="row"><button class="b">${c0?'Enregistrer':'Créer'}</button>${c0?cancel:''}</div><div class="ferr" role="alert"></div></form></div>
+ <div class="card">${tbl(['Classe','Effectif','Capacité','Titulaire',''],DB.classes.map(c=>{const n=DB.eleves.filter(s=>s.classe===c.id).length;return[e(c.id),n,c.cap,e(c.titulaire?nm(c.titulaire):'—'),`<div class="row"><button class="b s" onclick="edit('classe','${e(c.id)}')">Modifier</button><button class="b d" onclick="delClasse('${e(c.id)}')">Supprimer</button></div>`]}))}</div>
+ <div class="card"><h3>${m0?'Modifier la matière '+e(m0.id):'Ajouter une matière'}</h3><form class="f" novalidate onsubmit="return saveMat(this,${m0?`'${e(m0.id)}'`:'null'})"><label>Nom<input name="n" required maxlength="40" value="${e(m0?m0.id:'')}"></label><label>Coefficient (1–5)<input name="c" type="number" min="1" max="5" step="1" required value="${m0?m0.coef:1}"></label><div class="row"><button class="b">${m0?'Enregistrer':'Ajouter'}</button>${m0?cancel:''}</div><div class="ferr" role="alert"></div></form>
+ ${tbl(['Matière','Coefficient',''],DB.matieres.map(m=>[e(m.id),m.coef,`<div class="row"><button class="b s" onclick="edit('mat','${e(m.id)}')">Modifier</button><button class="b d" onclick="delMat('${e(m.id)}')">Supprimer</button></div>`]))}</div>
+ <div class="card"><h3>Affecter une matière à une classe</h3><form class="f" novalidate onsubmit="return saveAff(this)"><label>Classe<select name="c">${opts(DB.classes.map(c=>[c.id,c.id]))}</select></label><label>Matière<select name="m">${opts(DB.matieres.map(m=>[m.id,m.id]))}</select></label><label>Enseignant<select name="p">${opts(profs.map(u=>[u.id,u.nom]))}</select></label><button class="b">Affecter</button><div class="ferr" role="alert"></div></form>
+ ${tbl(['Classe','Matière','Enseignant',''],DB.affect.map(a=>[e(a.classe),e(a.mat),e(nm(a.prof)),`<button class="b d" onclick="delAff('${a.id}')">Retirer</button>`]))}</div>`},
+salles(){const s0=ED&&ED.k==='salle'?DB.salles.find(s=>s.id===ED.id):null;
+ return `<div class="card"><h3>${s0?'Modifier la salle':'Ajouter une salle'}</h3><form class="f" novalidate onsubmit="return saveSalle(this,${s0?`'${e(s0.id)}'`:'null'})"><label>Nom<input name="n" required maxlength="30" value="${e(s0?s0.id:'')}"></label><label>Capacité (1–60)<input name="c" type="number" min="1" max="60" step="1" required value="${s0?s0.cap:25}"></label><label><input type="checkbox" name="o" style="width:auto" ${!s0||s0.dispo!==false?'checked':''}> Disponible</label><div class="row"><button class="b">${s0?'Enregistrer':'Ajouter'}</button>${s0?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div><div class="ferr" role="alert"></div></form></div>
+ <div class="card">${tbl(['Salle','Capacité','Disponibilité',''],DB.salles.map(s=>[e(s.id),s.cap,s.dispo!==false?'<span class="tag">Disponible</span>':'<span class="tag w">Indisponible</span>',`<div class="row"><button class="b s" onclick="edit('salle','${e(s.id)}')">Modifier</button><button class="b d" onclick="delSalle('${e(s.id)}')">Supprimer</button></div>`]))}</div>`},
+enseignants(){const u0=ED&&ED.k==='ens'?DB.users.find(u=>u.id===ED.id):null;
+ return `<div class="card"><h3>${u0?'Modifier l’enseignant':'Ajouter un enseignant'}</h3><form class="f" novalidate onsubmit="return saveEns(this,${u0?`'${u0.id}'`:'null'})"><label>Nom complet<input name="nm" required maxlength="60" value="${e(u0?u0.nom:'')}"></label><label>E-mail<input name="em" type="email" required maxlength="80" value="${e(u0?u0.email:'')}"></label><label>Téléphone (8 chiffres)<input name="tl" type="tel" required maxlength="16" value="${e(u0?u0.tel:'')}"></label>${u0?`<p class="note">Identifiant de connexion : <b>${e(u0.login)}</b></p>`:''}<div class="row"><button class="b">${u0?'Enregistrer':'Ajouter'}</button>${u0?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div><div class="ferr" role="alert"></div></form>${u0?'':'<p class="note">Un mot de passe provisoire sera affiché après la création.</p>'}</div>
+ <div class="card">${tbl(['Nom','E-mail','Téléphone','Classes','Matières',''],DB.users.filter(u=>u.role==='enseignant').map(u=>[e(u.nom),e(u.email||'—'),e(u.tel||'—'),e(tcl(u).join(', ')||'—'),e([...new Set(DB.affect.filter(a=>a.prof===u.id).map(a=>a.mat))].join(', ')||'—'),`<div class="row"><button class="b s" onclick="edit('ens','${u.id}')">Modifier</button><button class="b d" onclick="delEns('${u.id}')">Supprimer</button></div>`]))}</div>`},
+edt(){const ad=U.role==='admin';let L=DB.edt;
+ if(U.role==='enseignant')L=L.filter(t=>t.prof===U.id);else if(!ad)L=L.filter(t=>mine().some(s=>s.classe===t.classe));
+ return `${ad?`<div class="card"><h3>Nouveau créneau</h3><form class="f" onsubmit="return addCreneau(this)"><label>Classe<select name="c">${opts(DB.classes.map(c=>[c.id,c.id]))}</select></label><label>Matière<select name="m">${opts(DB.matieres.map(c=>[c.id,c.id]))}</select></label><label>Enseignant<select name="p">${opts(DB.users.filter(u=>u.role==='enseignant').map(u=>[u.id,u.nom]))}</select></label><label>Salle<select name="s">${opts(DB.salles.filter(s=>s.dispo!==false).map(c=>[c.id,c.id]))}</select></label><label>Jour<select name="j">${['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'].map(j=>`<option>${j}</option>`).join('')}</select></label><label>Début<input name="d" type="time" required></label><label>Fin<input name="f" type="time" required></label><button class="b">Ajouter</button></form></div>`:''}
+ <div class="card">${tbl(['Jour','Horaire','Classe','Matière','Enseignant','Salle',''],L.map(t=>[t.jour,t.d+'–'+t.f,e(t.classe),e(t.mat),e(nm(t.prof)),e(t.salle),ad?`<button class="b d" onclick="delCreneau('${t.id}')">Supprimer</button>`:'']))}</div>`},
+notes(){const T=U.role==='enseignant',A=myAff(),n0=ED&&ED.k==='note'?DB.notes.find(n=>n.id===ED.id&&n.prof===U.id):null,a0=(n0&&A.find(a=>a.mat===n0.mat&&a.classe===stu(n0.sid).classe))||A[0];
+ return `${T?`<div class="card"><h3>${n0?'Modifier la note':'Saisir une note'}</h3>${A.length?`<form class="f" novalidate onsubmit="return saveNote(this,${n0?`'${n0.id}'`:'null'})"><label>Classe et matière<select name="a" onchange="fltS(this.form)">${opts(A.map(a=>[a.id,a.classe+' — '+a.mat]),a0&&a0.id)}</select></label><label>Élève<select name="s">${opts(DB.eleves.filter(s=>s.classe===a0.classe).map(s=>[s.id,s.prenom+' '+s.nom]),n0&&n0.sid)}</select></label><label>Évaluation<select name="t"><option ${n0&&n0.type==='Examen trimestriel'?'':'selected'}>Contrôle continu</option><option ${n0&&n0.type==='Examen trimestriel'?'selected':''}>Examen trimestriel</option></select></label><label>Trimestre<select name="r">${[1,2,3].map(x=>`<option ${n0&&n0.tri===x?'selected':''}>${x}</option>`).join('')}</select></label><label>Note /20 (pas de 0,25)<input name="v" type="number" step="0.25" min="0" max="20" required value="${n0?n0.val:''}"></label><div class="row"><button class="b">${n0?'Enregistrer':'Ajouter'}</button>${n0?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div><div class="ferr" role="alert"></div></form>`:'<p class="note">Aucune matière ne vous est affectée : contactez l’administration.</p>'}</div>
+ <div class="card"><h3>Notes saisies</h3>${tbl(['Élève','Classe','Matière','Évaluation','Trim.','Note',''],DB.notes.filter(n=>n.prof===U.id).map(n=>[e(sn(n.sid)),e(stu(n.sid).classe),e(n.mat),e(n.type),n.tri,n.val+'/20',`<div class="row"><button class="b s" onclick="edit('note','${n.id}')">Modifier</button><button class="b d" onclick="delNote('${n.id}')">Supprimer</button></div>`]))}</div>`:''}
+ ${mine().map(s=>{const m=moyennes(s.id);return `<div class="card bull" id="b-${s.id}"><h3>Bulletin – ${e(s.prenom+' '+s.nom)} (${e(s.classe)})</h3>${tbl(['Matière','Coef.','Moyenne /20'],m.rows.map(r=>[e(r.m),r.c,r.a.toFixed(2).replace('.',',')]))}
+ <p><b>Moyenne générale :</b> ${m.gen===null?'—':m.gen.toFixed(2).replace('.',',')+' /20'} <span class="note">(matières sans note exclues, pas comptées comme 0)</span></p><p class="note">${(()=>{const A=DB.absences.filter(a=>a.sid===s.id);return 'Absences : '+A.length+' (dont '+A.filter(a=>a.statut==='Justifiée').length+' justifiée(s))'})()}</p><button class="b s noprint" onclick="printBull('${s.id}')">Télécharger ce bulletin (PDF)</button></div>`}).join('')||'<p class="note">Aucun élève.</p>'}`},
+paie(){const fin=U.role==='admin'||U.role==='comptable';
+ return `${fin?`<div class="card"><h3>Enregistrer un paiement</h3><form class="f" onsubmit="return addPaie(this)"><label>Élève<select name="s">${opts(DB.eleves.map(s=>[s.id,s.prenom+' '+s.nom]))}</select></label><label>Montant (${CUR})<input name="a" type="number" min="1" step="0.01" required></label><label>Mode<select name="m"><option>Espèces</option><option>Virement</option><option>Mobile money</option></select></label><button class="b">Valider</button></form></div>`:''}
+ <div class="card"><h3>Soldes</h3>${tbl(['Élève','Tarif annuel','Payé','Reste'],mine().map(s=>[e(s.prenom+' '+s.nom),tarif(s.id)?money(total(s.id)):'<span class="tag w">Non défini</span>',money(paye(s.id)),!tarif(s.id)?'—':solde(s.id)>0?`<span class="tag w">${money(solde(s.id))}</span>`:'<span class="tag">Soldé</span>']))}</div>
+ <div class="card"><h3>Historique et reçus</h3>${tbl(['Reçu','Date','Élève','Montant','Mode',''],DB.paiements.filter(p=>ids().includes(p.sid)).map(p=>[p.ref,p.date,e(sn(p.sid)),money(p.montant),p.mode,`<button class="b s" onclick="recu('${p.id}')">Reçu</button>`]))}</div>`},
+devoirs(){const T=U.role==='enseignant',A=myAff(),d0=ED&&ED.k==='dev'?DB.devoirs.find(d=>d.id===ED.id&&d.prof===U.id):null;
+ let L=DB.devoirs;if(T)L=L.filter(d=>d.prof===U.id);else if(U.role!=='admin')L=L.filter(d=>mine().some(s=>s.classe===d.classe));
+ const form=T?`<div class="card"><h3>${d0?'Modifier le devoir':'Publier un devoir'}</h3>${A.length||d0?`<form class="f" novalidate onsubmit="return saveDevoir(this,${d0?`'${d0.id}'`:'null'})"><label>Classe et matière<select name="a" ${d0?'disabled':''}>${d0?`<option>${e(d0.classe+' — '+d0.mat)}</option>`:opts(A.map(a=>[a.id,a.classe+' — '+a.mat]))}</select></label><label>Titre<input name="t" required maxlength="100" value="${e(d0?d0.titre:'')}"></label><label>Date de remise<input name="d" type="date" required min="${today()}" value="${e(d0?d0.due:'')}"></label><label>Barème (note max.)<input name="b" type="number" min="1" max="100" step="1" required value="${d0?d0.bareme:20}"></label><label style="grid-column:1/-1">Description<textarea name="x" required maxlength="1000">${e(d0?d0.desc:'')}</textarea></label><div class="row"><button class="b">${d0?'Enregistrer':'Publier'}</button>${d0?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div><div class="ferr" role="alert"></div></form>`:'<p class="note">Aucune matière ne vous est affectée.</p>'}</div>`:'';
+ const cards=L.map(d=>{const late=new Date()>dEnd(d),dp=DB.depots.filter(x=>x.hid===d.id),cl=DB.eleves.filter(s=>s.classe===d.classe),bar=d.bareme||20;
+ const head=`<h3>${e(d.titre)} <span class="tag">${e(d.mat)}</span></h3><p>${e(d.desc)}<br><span class="note">Pour le ${e(d.due)} · ${e(d.classe)} · barème /${bar}${T?'':' · '+e(nm(d.prof))}</span></p>`;
+ const trav=m=>m?`${m.pdf?`<button type="button" class="b s" onclick="dlDepot('${d.id}','${m.sid}')">📄 ${e(m.pdf.name)}</button>`:''}${m.texte?`<div class="note" style="white-space:normal;max-width:320px">${e(m.texte)}</div>`:''}`:'—';
+ if(U.role==='eleve'){const m=dp.find(x=>x.sid===U.sid);return `<div class="card">${head}<p>Statut : <b>${stat(d,U.sid)}</b>${m&&m.note!=null?' — '+m.note+'/'+bar+(m.comm?' · '+e(m.comm):''):''}</p>${m&&m.pdf?`<p>Votre dépôt : ${trav(m)}</p>`:''}${corrBlock(d,U.sid)}${late||(m&&m.note!=null)?'':`<form class="f" novalidate onsubmit="return depot(this,'${d.id}')"><label style="grid-column:1/-1">Votre travail au format PDF (800 Ko max.)<input name="p" type="file" accept="application/pdf,.pdf" required></label><label style="grid-column:1/-1">Commentaire (facultatif)<input name="x" maxlength="300" value="${e(m&&m.texte||'')}"></label><button class="b">${m?'Remplacer le PDF':'Déposer le PDF'}</button><div class="ferr" role="alert"></div></form>`}</div>`}
+ if(T){const cf=ED&&ED.k==='corr'&&ED.h===d.id?DB.depots.find(x=>x.hid===d.id&&x.sid===ED.s):null;
+ return `<div class="card">${head}<div class="row"><button class="b s" onclick="edit('dev','${d.id}')">Modifier</button><button class="b d" onclick="delDevoir('${d.id}')">Supprimer</button></div>
+ ${tbl(['Élève','Statut','Déposé le','Travail','Note',''],cl.map(s=>{const m=dp.find(x=>x.sid===s.id);return[e(s.prenom+' '+s.nom),stat(d,s.id),m?e(m.date):'—',trav(m),m&&m.note!=null?m.note+'/'+bar:'—',m?`<button class="b s" onclick="edit2('${d.id}','${s.id}')">${m.note!=null?'Modifier la note':'Corriger'}</button>`:'']}))}
+ ${cf?`<form class="f" novalidate onsubmit="return saveCorr(this,'${d.id}','${ED.s}')"><h3 style="grid-column:1/-1">Correction : ${e(sn(ED.s))}</h3><label>Note /${bar}<input name="v" type="number" min="0" max="${bar}" step="0.25" required value="${cf.note!=null?cf.note:''}"></label><label style="grid-column:span 2">Commentaire (facultatif)<input name="c" maxlength="500" value="${e(cf.comm||'')}"></label><div class="row"><button class="b">Publier la note</button><button type="button" class="b s" onclick="ED=null;draw()">Annuler</button></div><div class="ferr" role="alert"></div></form>`:''}
+ <form class="f" novalidate onsubmit="return saveCorrige(this,'${d.id}')"><h3 style="grid-column:1/-1">Corrigé (visible après la date de remise)</h3>${d.corrigePdf?`<p class="note" style="grid-column:1/-1">Corrigé actuel : ${e(d.corrigePdf.name)}</p>`:''}<label>Corrigé au format PDF (800 Ko max.)<input name="p" type="file" accept="application/pdf,.pdf"></label><label style="grid-column:span 2">Explication (facultative)<textarea name="x" maxlength="3000">${e(d.corrige||'')}</textarea></label><button class="b s">${d.corrige||d.corrigePdf?'Mettre à jour le corrigé':'Publier le corrigé'}</button><div class="ferr" role="alert"></div></form></div>`}
+ return `<div class="card">${head}${tbl(['Élève','Statut','Note','Commentaire','Dépôt','Correction','Vu'],cl.filter(s=>mine().some(x=>x.id===s.id)).map(s=>{const m=dp.find(x=>x.sid===s.id),v=(d.vus||[]).includes(U.id+':'+s.id);return[e(s.prenom),stat(d,s.id),m&&m.note!=null?m.note+'/'+bar:'—',e(m&&m.comm||'—'),trav(m),corrBlock(d,s.id),U.role==='parent'?(v?'<span class="tag">Vu</span>':`<button class="b s" onclick="vu('${d.id}','${s.id}')">Marquer vu</button>`):'']}))}</div>`}).join('')||'<p class="note">Aucun devoir.</p>';
+ return form+cards},msgs(){const p0=ED&&ED.k==='draft'?{...DB.msgs.find(m=>m.id===ED.id&&m.de===U.id&&m.brouillon),did:ED.id}:ED&&ED.k==='reply'?{a:ED.to,sid:ED.sid,sujet:ED.sujet}:{},R0=recips(),to0=p0.a||(R0[0]&&R0[0].id),did=p0.did?`'${p0.did}'`:'null',list=m=>!MF||m.sid===MF;
+ const row=(m,x)=>[m.date,e(nm(x)),e(m.sid&&stu(m.sid)?sn(m.sid):'—'),e(m.sujet),e(m.corps)];
+ return `<div class="card"><h3>${p0.did?'Reprendre le brouillon':'Nouveau message'}</h3>${R0.length?`<form class="f" novalidate onsubmit="return saveMsg(this,true,${did})"><label>Destinataire<select name="a" onchange="this.form.k.innerHTML=kOpts(this.value)">${opts(R0.map(u=>[u.id,u.nom+' ('+u.role+')']),to0)}</select></label><label>Élève concerné<select name="k">${kOpts(to0,p0.sid)}</select></label><label>Objet<input name="s" required maxlength="100" value="${e(p0.sujet||'')}"></label><label style="grid-column:1/-1">Message<textarea name="b" required maxlength="2000">${e(p0.corps||'')}</textarea></label><div class="row"><button class="b">Envoyer</button><button type="button" class="b s" onclick="return saveMsg(this.form,false,${did})">Enregistrer en brouillon</button>${ED?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div><div class="ferr" role="alert"></div></form>`:'<p class="note">Aucun destinataire disponible pour votre profil.</p>'}<p class="note">Un message envoyé ne peut plus être modifié ni supprimé ; seul un brouillon reste modifiable.</p></div>
+ <div class="card"><label style="max-width:320px">Filtrer par élève<select onchange="MF=this.value;draw()">${opts([['','Tous les élèves'],...mine().map(s=>[s.id,s.prenom+' '+s.nom])],MF)}</select></label></div>
+ <div class="card"><h3>Boîte de réception</h3>${tbl(['Date','De','Élève','Objet','Message',''],DB.msgs.filter(m=>m.a===U.id&&!m.brouillon&&!m.masque.includes(U.id)&&list(m)).map(m=>[...row(m,m.de),`<div class="row">${R0.some(u=>u.id===m.de)?`<button class="b s" onclick="reply('${m.id}')">Répondre</button>`:''}<button class="b d" onclick="masque('${m.id}')">Masquer</button></div>`]))}</div>
+ <div class="card"><h3>Brouillons</h3>${tbl(['Date','À','Élève','Objet','Message',''],DB.msgs.filter(m=>m.de===U.id&&m.brouillon&&list(m)).map(m=>[...row(m,m.a),`<div class="row"><button class="b s" onclick="edit('draft','${m.id}')">Reprendre</button><button class="b d" onclick="delDraft('${m.id}')">Supprimer</button></div>`]))}</div>
+ <div class="card"><h3>Envoyés</h3>${tbl(['Date','À','Élève','Objet','Message'],DB.msgs.filter(m=>m.de===U.id&&!m.brouillon&&list(m)).map(m=>row(m,m.a)))}</div>`},
+mesclasses(){return tcl(U).map(id=>DB.classes.find(c=>c.id===id)).filter(Boolean).map(c=>{const S=DB.eleves.filter(s=>s.classe===c.id),A=DB.affect.filter(a=>a.classe===c.id&&a.prof===U.id);
+ return `<div class="card"><h3>${e(c.id)} ${c.titulaire===U.id?'<span class="tag">Titulaire</span>':''}</h3><p class="note">Effectif ${S.length}/${c.cap} · Mes matières : ${e(A.map(a=>a.mat).join(', ')||'—')}</p>${tbl(['Élève','Naissance','Parent(s)',''],S.map(s=>{const P=DB.users.filter(u=>u.role==='parent'&&u.enfants.includes(s.id));return[e(s.prenom+' '+s.nom),e(s.naissance),e(P.map(p=>p.nom).join(', ')||'—'),P.length?`<button class="b s" onclick="compose('${P[0].id}','${s.id}')">Écrire au parent</button>`:'']}))}</div>`}).join('')||'<div class="empty">Aucune classe ne vous est affectée.</div>'},
+absences(){const T=U.role==='enseignant',P=U.role==='parent',AD=U.role==='admin',a0=ED&&ED.k==='abs'?DB.absences.find(a=>a.id===ED.id&&a.prof===U.id&&a.statut==='Non justifiée'):null,j0=ED&&ED.k==='just'?DB.absences.find(a=>a.id===ED.id&&ids().includes(a.sid)&&['Non justifiée','Refusée'].includes(a.statut)):null;
+ let L=DB.absences.filter(a=>ids().includes(a.sid));if(T)L=L.filter(a=>a.prof===U.id);L=[...L].sort((x,y)=>AD?(+(y.statut==='En attente')-+(x.statut==='En attente'))||y.date.localeCompare(x.date):y.date.localeCompare(x.date));
+ const tg=s=>`<span class="tag ${s==='Justifiée'?'':'w'}">${s}</span>`,nJ=L.filter(a=>a.statut==='Justifiée').length;
+ const form=T?`<div class="card"><h3>${a0?'Modifier l’absence':'Enregistrer une absence'}</h3><form class="f" novalidate onsubmit="return saveAbs(this,${a0?`'${a0.id}'`:'null'})"><label>Élève<select name="s">${opts(mine().map(s=>[s.id,s.prenom+' '+s.nom+' ('+s.classe+')']),a0&&a0.sid)}</select></label><label>Date<input name="d" type="date" required min="${RENTREE}" max="${today()}" value="${e(a0?a0.date:today())}"></label><label>Période<select name="r">${PER.map(x=>`<option ${a0&&a0.per===x?'selected':''}>${x}</option>`).join('')}</select></label><div class="row"><button class="b">${a0?'Enregistrer':'Ajouter'}</button>${a0?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div><div class="ferr" role="alert"></div></form></div>`:'';
+ const jf=j0?`<div class="card"><h3>Justifier l’absence de ${e(sn(j0.sid))} du ${e(j0.date)} (${e(j0.per)})</h3><form class="f" novalidate onsubmit="return saveJust(this,'${j0.id}')"><label>Motif<select name="m">${MOT.map(x=>`<option>${x}</option>`).join('')}</select></label><label style="grid-column:span 2">Explication (5 à 300 caractères)<input name="c" required maxlength="300"></label><label>Certificat PDF (facultatif, 800 Ko max.)<input name="p" type="file" accept="application/pdf,.pdf"></label><div class="row"><button class="b">Envoyer</button><button type="button" class="b s" onclick="ED=null;draw()">Annuler</button></div><div class="ferr" role="alert"></div></form></div>`:'';
+ return `${form}${jf}<div class="card">${P||AD?`<p class="note">${L.length} absence(s) dont ${nJ} justifiée(s).</p>`:''}${tbl(['Élève','Date','Période','Statut','Justification',''],L.map(a=>[e(sn(a.sid)),e(a.date),e(a.per),tg(a.statut),a.motif?`<div style="white-space:normal;max-width:280px">${e(a.motif)} — ${e(a.comm)}${a.pdf?` <button type="button" class="b s" onclick="dlAbs('${a.id}')">📄 PDF</button>`:''}</div>`:'—',T?(a.statut==='Non justifiée'?`<div class="row"><button class="b s" onclick="edit('abs','${a.id}')">Modifier</button><button class="b d" onclick="delAbs('${a.id}')">Supprimer</button></div>`:''):P?(['Non justifiée','Refusée'].includes(a.statut)?`<button class="b s" onclick="edit('just','${a.id}')">Justifier</button>`:''):(a.statut==='En attente'?`<div class="row"><button class="b" onclick="decideAbs('${a.id}',true)">Valider</button><button class="b d" onclick="decideAbs('${a.id}',false)">Refuser</button></div>`:'')]))}</div>`},
+tarifs(){const t0=ED&&ED.k==='tarif'?DB.tarifs.find(t=>t.id===ED.id):null,f2=n=>money(n);
+ return `<div class="card"><h3>${t0?'Modifier le tarif':'Définir un tarif'}</h3><form class="f" novalidate onsubmit="return saveTarif(this,${t0?`'${t0.id}'`:'null'})"><label>Année scolaire<input name="y" required maxlength="9" placeholder="2026-2027" value="${e(t0?t0.annee:'2026-2027')}"></label><label>Niveau<select name="n">${opts(NIV.map(x=>[x,x]),t0&&t0.niveau)}</select></label><label>Inscription (${CUR})<input name="i" type="number" min="0" max="5000" step="0.01" required value="${t0?t0.inscription:''}"></label><label>Scolarité (${CUR})<input name="s" type="number" min="1" max="20000" step="0.01" required value="${t0?t0.scolarite:''}"></label><label>Tranches (1–10)<input name="t" type="number" min="1" max="10" step="1" required value="${t0?t0.tranches:3}"></label><div class="row"><button class="b">${t0?'Enregistrer':'Ajouter'}</button>${t0?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div><div class="ferr" role="alert"></div></form></div>
+ <div class="card">${tbl(['Année','Niveau','Inscription','Scolarité','Total','Tranches','Élèves',''],[...DB.tarifs].sort((a,b)=>b.annee.localeCompare(a.annee)||NIV.indexOf(a.niveau)-NIV.indexOf(b.niveau)).map(t=>[e(t.annee),e(t.niveau),f2(t.inscription),f2(t.scolarite),f2(t.inscription+t.scolarite),t.tranches+' × '+f2(t.scolarite/t.tranches),concerned(t).length,`<div class="row"><button class="b s" onclick="edit('tarif','${t.id}')">Modifier</button><button class="b d" onclick="delTarif('${t.id}')">Supprimer</button></div>`]))}</div>`},
+annonces(){return `${U.role==='admin'?`<div class="card"><h3>Publier une annonce</h3><form class="f" novalidate onsubmit="return annonce(this)"><label>Titre<input name="t" required minlength="5" maxlength="100"></label><label>Public<select name="c"><option value="tous">Tous</option><option value="parent">Parents</option><option value="eleve">Élèves</option><option value="enseignant">Enseignants</option></select></label><label>Texte<textarea name="b" required minlength="10" maxlength="1000"></textarea></label><button class="b">Publier</button><div class="ferr" role="alert"></div></form><p class="note">Une annonce publiée est définitive ; publiez une annonce corrective en cas d’erreur.</p></div>`:''}
+ <div class="card">${tbl(['Date','Titre','Texte'],DB.annonces.filter(a=>U.role==='admin'||a.cible==='tous'||a.cible===U.role).map(a=>[a.date,e(a.titre),e(a.corps)]))}</div>`},
+comptes(){const a0=ED&&ED.k==='acc'?DB.users.find(u=>u.id===ED.id):null,rl=a0?a0.role:'enseignant',kids2=a0&&a0.enfants||[],free=DB.eleves.filter(s=>!DB.users.some(u=>u.role==='eleve'&&u.sid===s.id&&(!a0||u.id!==a0.id)));
+ const L=DB.users.filter(u=>!AF||u.role===AF);
+ return `<div class="card"><h3>${a0?'Modifier le compte de '+e(a0.nom):'➕ Créer un nouveau compte'}</h3><form class="f one" novalidate onsubmit="return saveAcc(this,${a0?`'${a0.id}'`:'null'})">
+ <label>1. Pour qui est ce compte ?<select name="ro" onchange="roleSel(this.form)" ${a0?'disabled':''}>${opts(ROLES.map(r=>[r,ROLEFR[r]]),rl)}</select></label>
+ <label class="rn" style="${rl==='eleve'?'display:none':''}">2. Nom et prénom<input name="nm" maxlength="60" autocomplete="off" placeholder="Exemple : Salma Ben Ali" value="${e(a0&&a0.role!=='eleve'?a0.nom:'')}"></label>
+ <label class="re" style="${rl==='eleve'?'':'display:none'}">2. Quel élève ?<select name="sid">${free.length?opts(free.map(s=>[s.id,s.prenom+' '+s.nom+' ('+s.classe+')']),a0&&a0.sid):'<option value="">Aucun élève sans compte</option>'}</select></label>
+ <fieldset class="rp" style="${rl==='parent'?'':'display:none'}"><legend>Quels sont ses enfants ? (cochez)</legend>${DB.eleves.length?DB.eleves.map(s=>`<label class="chk"><input type="checkbox" name="en" value="${s.id}" ${kids2.includes(s.id)?'checked':''}> ${e(s.prenom+' '+s.nom)} <span class="note">${e(s.classe)}</span></label>`).join(''):'<p class="note">Aucun élève pour le moment : ajoutez d’abord les élèves.</p>'}</fieldset>
+ <label>3. Adresse e-mail<input name="em" type="email" maxlength="80" placeholder="nom@exemple.com" value="${e(a0?a0.email:'')}"></label>
+ <label>Téléphone (facultatif)<input name="tl" type="tel" maxlength="16" placeholder="20 123 456" value="${e(a0?a0.tel:'')}"></label>
+ ${a0?`<p class="note">Identifiant de connexion : <b>${e(a0.login)}</b></p>`:'<p class="note">L’identifiant de connexion est créé automatiquement et sera écrit sur la fiche à remettre.</p>'}
+ <div class="ferr" role="alert"></div><div class="row" style="flex-wrap:wrap"><button class="b big">${a0?'✔ Enregistrer':'✔ Créer le compte'}</button>${a0?'<button type="button" class="b s" onclick="ED=null;draw()">Annuler</button>':''}</div></form></div>
+ <div class="card"><h3>👥 Tous les comptes</h3><label style="max-width:320px">Afficher<select onchange="AF=this.value;draw()">${opts([['','Tout le monde'],...ROLES.map(r=>[r,ROLEFR[r]])],AF)}</select></label>
+ ${tbl(['Nom','Type','Identifiant','Lié à','État',''],L.map(u=>[e(u.nom),ROLEFR[u.role],e(u.login),e(u.role==='parent'?u.enfants.map(sn).join(', '):u.role==='eleve'&&stu(u.sid)?stu(u.sid).classe:'—'),!u.actif?'<span class="tag w">Désactivé</span>':u.must?'<span class="tag w">Mot de passe provisoire</span>':'<span class="tag">Actif</span>',`<div class="row" style="flex-wrap:wrap"><button class="b s" onclick="edit('acc','${u.id}')">✏️ Modifier</button><button class="b s" onclick="resetPw('${u.id}')">🔑 Nouveau mot de passe</button><button class="b s" onclick="toggleAcc('${u.id}')">${u.actif?'⏸ Désactiver':'▶ Réactiver'}</button><button class="b d" onclick="delAcc('${u.id}')">🗑 Supprimer</button></div>`]))}</div>`},
+compte(){return `<div class="card"><h3>👤 ${e(U.nom)}</h3><p>Type de compte : <b>${ROLEFR[U.role]}</b> · Identifiant : <b>${e(U.login)}</b></p></div><div class="card"><h3>🔑 Changer mon mot de passe</h3>${pwForm(false)}</div>`},
+aide(){return `<div class="card"><h3>Que faire, étape par étape</h3>${GUIDE[U.role].map((g,i)=>`<div class="step"><span class="n">${i+1}</span><div><b>${g[0]}</b><br><span>${g[1]}</span></div></div>`).join('')}<p class="note">Un problème de connexion ou de mot de passe ? Demandez à l’administration de l’école de vous créer un nouveau mot de passe provisoire.</p><p class="note">Le texte est trop petit ? Utilisez les boutons <b>A+</b> et <b>A−</b> en haut de la page.</p></div>`},
+audit(){return `<div class="card">${tbl(['Date','Utilisateur','Action','Détail'],DB.audit.map(a=>[a.t,e(a.u),e(a.a),e(a.d)]))}</div>`}};
+function recips(){const r=U.role,P=DB.users.filter(u=>u.role==='parent'),A=DB.users.filter(u=>u.role==='admin');
+ if(r==='admin')return DB.users.filter(u=>u.id!==U.id);
+ if(r==='enseignant')return P.filter(p=>p.enfants.some(i=>stu(i)&&tcl(U).includes(stu(i).classe)));
+ if(r==='parent')return[...A,...DB.users.filter(u=>u.role==='enseignant'&&mine().some(x=>tcl(u).includes(x.classe)))];
+ if(r==='comptable')return P;return A}
+const val=f=>{if(!f.checkValidity()){f.reportValidity();return false}return true};
+const NIV=['CP','CE1','CE2','CM1','CM2'],sp=s=>s.trim().replace(/\s+/g,' '),NRE=/^\p{L}[\p{L}'’ -]{1,39}$/u,LBLRE=/^\p{L}[\p{L}0-9'’ .-]{1,39}$/u;
+const FE=(f,m,n)=>{f.querySelector('.ferr').textContent=m;if(n&&f[n]){f[n].setAttribute('aria-invalid','true');f[n].focus()}return false};
+const done=m=>{ED=null;save();msg(m);draw();return false};
+const edit=(k,id)=>{ED={k,id};draw();window.scrollTo(0,0)};
+const today=()=>new Date().toISOString().slice(0,10);
+const ageOf=d=>{const t=new Date(),b=new Date(d);let a=t.getFullYear()-b.getFullYear();if(t<new Date(t.getFullYear(),b.getMonth(),b.getDate()))a--;return a};
+const dRange=()=>{const t=new Date(),f=n=>new Date(Date.UTC(t.getFullYear()-n,t.getMonth(),t.getDate())).toISOString().slice(0,10);return{min:f(14),max:f(5)}};
+function saveEleve(f,id){const p=sp(f.p.value),n=sp(f.n.value),d=f.d.value;
+ if(!NRE.test(p))return FE(f,'Prénom invalide : 2 à 40 lettres (espaces, apostrophes, tirets ; pas de chiffres).','p');
+ if(!NRE.test(n))return FE(f,'Nom invalide : 2 à 40 lettres (espaces, apostrophes, tirets ; pas de chiffres).','n');
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||isNaN(new Date(d)))return FE(f,'Date de naissance obligatoire et valide.','d');
+ if(d>today())return FE(f,'La date de naissance ne peut pas être dans le futur.','d');
+ const a=ageOf(d);if(a<5||a>13)return FE(f,'Âge calculé : '+a+' ans. L’école primaire accepte les élèves de 5 à 13 ans.','d');
+ if(DB.eleves.some(s=>s.id!==id&&s.naissance===d&&s.prenom.toLowerCase()===p.toLowerCase()&&s.nom.toLowerCase()===n.toLowerCase()))return FE(f,'Un élève identique (nom, prénom, naissance) existe déjà.','p');
+ const c=DB.classes.find(x=>x.id===f.c.value);if(!c)return FE(f,'Classe invalide.','c');
+ if(DB.eleves.filter(s=>s.classe===c.id&&s.id!==id).length>=c.cap)return FE(f,'Capacité maximale de la classe atteinte ('+c.cap+').','c');
+ const v={prenom:p,nom:n,naissance:d,classe:c.id};
+ if(id){const s=stu(id),ch=Object.keys(v).filter(k=>s[k]!==v[k]).map(k=>k+' : '+s[k]+' → '+v[k]).join(' ; ');Object.assign(s,v);log('Élève modifié',s.prenom+' '+s.nom+' ('+(ch||'aucun changement')+')');return done('Élève modifié.')}
+ DB.eleves.push({id:uid('s'),...v,annee:'2026-2027'});log('Élève créé',p+' '+n);return done('Élève inscrit.')}
+function delEleve(id){const s=stu(id);if(DB.paiements.some(p=>p.sid===id)||DB.notes.some(n=>n.sid===id)||DB.depots.some(x=>x.sid===id)||DB.users.some(u=>u.role==='eleve'&&u.sid===id)){msg('Suppression refusée : des notes, paiements, dépôts ou un compte sont rattachés à cet élève.','er')}else if(confirm('Supprimer définitivement '+s.prenom+' '+s.nom+' ?')){DB.eleves=DB.eleves.filter(x=>x.id!==id);DB.users.forEach(u=>{if(u.enfants)u.enfants=u.enfants.filter(i=>i!==id)});log('Élève supprimé',s.prenom+' '+s.nom);msg('Élève supprimé.')}else return;save();draw()}
+function saveClasse(f,old){const niv=f.v.value,sec=f.s.value.trim().toUpperCase(),cap=+f.c.value,t=f.t.value,id=niv+' '+sec;
+ if(!NIV.includes(niv))return FE(f,'Niveau invalide.','v');
+ if(!/^[A-F]$/.test(sec))return FE(f,'Section invalide : une seule lettre de A à F.','s');
+ if(!f.c.value||!Number.isInteger(cap)||cap<5||cap>40)return FE(f,'Capacité : nombre entier entre 5 et 40.','c');
+ if(t&&!DB.users.some(u=>u.id===t&&u.role==='enseignant'))return FE(f,'Titulaire invalide.','t');
+ if(id!==old&&DB.classes.some(c=>c.id===id))return FE(f,'La classe '+id+' existe déjà.','s');
+ if(old){const c=DB.classes.find(x=>x.id===old),n=DB.eleves.filter(s=>s.classe===old).length;if(cap<n)return FE(f,'Capacité inférieure à l’effectif actuel ('+n+' élèves).','c');
+  if(id!==old)[DB.eleves,DB.edt,DB.devoirs,DB.affect].forEach(L=>L.forEach(x=>{if(x.classe===old)x.classe=id}));
+  Object.assign(c,{id,niveau:niv,section:sec,cap,titulaire:t});log('Classe modifiée',old+(id!==old?' → '+id:'')+', capacité '+cap);return done('Classe modifiée.')}
+ DB.classes.push({id,niveau:niv,section:sec,cap,titulaire:t});log('Classe créée',id);return done('Classe créée.')}
+function delClasse(id){const r=[['élèves',DB.eleves],['cours',DB.edt],['devoirs',DB.devoirs],['affectations',DB.affect]].map(([l,L])=>[l,L.filter(x=>x.classe===id).length]).filter(x=>x[1]);
+ if(r.length){msg('Suppression refusée : cette classe contient '+r.map(x=>x[1]+' '+x[0]).join(', ')+'. Réaffectez ou retirez-les d’abord.','er');draw();return}
+ if(confirm('Supprimer la classe '+id+' ?')){DB.classes=DB.classes.filter(c=>c.id!==id);log('Classe supprimée',id);save();msg('Classe supprimée.');draw()}}
+function saveMat(f,old){const n=sp(f.n.value),c=+f.c.value;
+ if(!LBLRE.test(n))return FE(f,'Nom de matière invalide (2 à 40 caractères, lettres en premier).','n');
+ if(!f.c.value||!Number.isInteger(c)||c<1||c>5)return FE(f,'Coefficient : nombre entier entre 1 et 5.','c');
+ if(DB.matieres.some(m=>m.id!==old&&m.id.toLowerCase()===n.toLowerCase()))return FE(f,'Cette matière existe déjà.','n');
+ if(old){const m=DB.matieres.find(x=>x.id===old);if(n!==old)[DB.notes,DB.edt,DB.devoirs,DB.affect].forEach(L=>L.forEach(x=>{if(x.mat===old)x.mat=n}));Object.assign(m,{id:n,coef:c});log('Matière modifiée',old+(n!==old?' → '+n:'')+', coef '+c);return done('Matière modifiée.')}
+ DB.matieres.push({id:n,coef:c});log('Matière créée',n);return done('Matière ajoutée.')}
+function delMat(id){const r=[['notes',DB.notes],['cours',DB.edt],['devoirs',DB.devoirs],['affectations',DB.affect]].map(([l,L])=>[l,L.filter(x=>x.mat===id).length]).filter(x=>x[1]);
+ if(r.length){msg('Suppression refusée : cette matière est liée à '+r.map(x=>x[1]+' '+x[0]).join(', ')+'.','er');draw();return}
+ if(confirm('Supprimer la matière '+id+' ?')){DB.matieres=DB.matieres.filter(m=>m.id!==id);log('Matière supprimée',id);save();msg('Matière supprimée.');draw()}}
+function saveAff(f){const c=f.c.value,m=f.m.value,p=f.p.value;
+ if(!DB.classes.some(x=>x.id===c))return FE(f,'Créez d’abord une classe.','c');
+ if(!DB.matieres.some(x=>x.id===m))return FE(f,'Créez d’abord une matière.','m');
+ if(!DB.users.some(u=>u.id===p&&u.role==='enseignant'))return FE(f,'Créez d’abord un enseignant.','p');
+ if(DB.affect.some(a=>a.classe===c&&a.mat===m))return FE(f,m+' est déjà affectée à '+c+' (enseignant : '+nm(DB.affect.find(a=>a.classe===c&&a.mat===m).prof)+'). Retirez l’affectation pour la changer.','m');
+ DB.affect.push({id:uid('af'),classe:c,mat:m,prof:p});log('Affectation créée',m+' / '+c+' / '+nm(p));return done('Matière affectée à la classe.')}
+function delAff(id){const a=DB.affect.find(x=>x.id===id);if(DB.edt.some(t=>t.classe===a.classe&&t.mat===a.mat&&t.prof===a.prof)){msg('Retrait refusé : des créneaux de l’emploi du temps utilisent cette affectation.','er');draw();return}
+ if(confirm('Retirer cette affectation ?')){DB.affect=DB.affect.filter(x=>x.id!==id);log('Affectation retirée',a.mat+' / '+a.classe);save();msg('Affectation retirée.');draw()}}
+function saveSalle(f,old){const n=sp(f.n.value),raw=f.c.value.trim(),c=+raw;
+ if(!/^[\p{L}0-9][\p{L}0-9'’ .-]{1,29}$/u.test(n)||!/\p{L}/u.test(n))return FE(f,'Nom invalide : 2 à 30 caractères, au moins une lettre (ex. « Salle 3 », « Laboratoire »), sans symboles.','n');
+ if(raw===''||!/^\d+$/.test(raw)||c<1||c>60)return FE(f,'Capacité : nombre entier entre 1 et 60.','c');
+ if(DB.salles.some(s=>s.id!==old&&s.id.toLowerCase()===n.toLowerCase()))return FE(f,'Cette salle existe déjà.','n');
+ if(old){const used=DB.edt.filter(t=>t.salle===old);
+  for(const t of used){const eff=DB.eleves.filter(s=>s.classe===t.classe).length;if(c<eff)return FE(f,'Capacité insuffisante : la classe '+t.classe+' (' +eff+' élèves) a cours dans cette salle.','c')}
+  if(!f.o.checked&&used.length)return FE(f,'Impossible de rendre la salle indisponible : '+used.length+' cours y sont planifiés.','o')}
+ const v={id:n,cap:c,dispo:f.o.checked};
+ if(old){const s=DB.salles.find(x=>x.id===old);if(n!==old)DB.edt.forEach(t=>{if(t.salle===old)t.salle=n});Object.assign(s,v);log('Salle modifiée',old+(n!==old?' → '+n:'')+', capacité '+c);return done('Salle modifiée.')}
+ DB.salles.push(v);log('Salle créée',n);return done('Salle ajoutée.')}
+const chkCren=n=>{const a=DB.affect.find(x=>x.classe===n.classe&&x.mat===n.mat);
+ if(!a||a.prof!==n.prof)return a?'cette matière est affectée à '+nm(a.prof)+' pour '+n.classe+', pas à '+nm(n.prof):'la matière '+n.mat+' n’est pas affectée à '+n.classe+' (voir Classes & matières)';
+ const s=DB.salles.find(x=>x.id===n.salle);if(!s||s.dispo===false)return 'salle indisponible';
+ const eff=DB.eleves.filter(x=>x.classe===n.classe).length;if(eff>s.cap)return 'la '+s.id+' ('+s.cap+' places) est trop petite pour '+n.classe+' ('+eff+' élèves)';
+ if(n.d<'07:30'||n.f>'18:00')return 'les cours ont lieu entre 07:30 et 18:00';
+ const mi=h=>+h.slice(0,2)*60+ +h.slice(3);if(mi(n.f)-mi(n.d)<30)return 'durée minimale de 30 minutes';return null};
+function delSalle(id){if(DB.edt.some(t=>t.salle===id)){msg('Suppression refusée : cette salle est utilisée dans l’emploi du temps.','er');draw();return}
+ if(confirm('Supprimer la salle '+id+' ?')){DB.salles=DB.salles.filter(s=>s.id!==id);log('Salle supprimée',id);save();msg('Salle supprimée.');draw()}}
+function saveEns(f,id){const n=sp(f.nm.value),em=f.em.value.trim().toLowerCase(),tl=f.tl.value.replace(/[\s.-]/g,'');
+ if(!/^\p{L}[\p{L}'’. -]{2,59}$/u.test(n))return FE(f,'Nom invalide : 3 à 60 caractères, sans chiffres.','nm');
+ if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/.test(em))return FE(f,'Adresse e-mail invalide.','em');
+ if(!/^(\+216)?\d{8}$/.test(tl))return FE(f,'Téléphone invalide : 8 chiffres (préfixe +216 accepté).','tl');
+ if(DB.users.some(u=>u.id!==id&&u.role==='enseignant'&&u.email===em))return FE(f,'Cet e-mail est déjà utilisé par un enseignant.','em');
+ if(id){const u=DB.users.find(x=>x.id===id);Object.assign(u,{nom:n,email:em,tel:tl});log('Enseignant modifié',n);return done('Enseignant modifié.')}
+ return mkAccount(f,{role:'enseignant',nom:n,email:em,tel:tl},'Enseignant ajouté. Notez son mot de passe provisoire.')}
+function delEns(id){const u=DB.users.find(x=>x.id===id),r=[['classes titulaires',DB.classes.filter(c=>c.titulaire===id)],['affectations',DB.affect.filter(a=>a.prof===id)],['cours',DB.edt.filter(t=>t.prof===id)],['messages',DB.msgs.filter(m=>m.de===id||m.a===id)]].filter(x=>x[1].length);
+ if(r.length){msg('Suppression refusée : '+u.nom+' est lié à '+r.map(x=>x[1].length+' '+x[0]).join(', ')+'.','er');draw();return}
+ if(confirm('Supprimer l’enseignant '+u.nom+' ?')){DB.users=DB.users.filter(x=>x.id!==id);log('Enseignant supprimé',u.nom);save();msg('Enseignant supprimé.');draw()}}
+function addCreneau(f){const n={id:uid('t'),classe:f.c.value,mat:f.m.value,prof:f.p.value,salle:f.s.value,jour:f.j.value,d:f.d.value,f:f.f.value};const er=chkCren(n);if(er){msg('Créneau refusé : '+er+'.','er');draw();return false}
+ if(n.d>=n.f){msg('L’heure de fin doit être après l’heure de début.','er');draw();return false}
+ const ov=DB.edt.filter(t=>t.jour===n.jour&&t.d<n.f&&n.d<t.f);let c=ov.find(t=>t.prof===n.prof)&&`l’enseignant ${nm(n.prof)} a déjà un cours`||ov.find(t=>t.salle===n.salle)&&`la ${n.salle} est déjà occupée`||ov.find(t=>t.classe===n.classe)&&`la classe ${n.classe} a déjà un cours`;
+ if(c){msg('Conflit d’horaire : '+c+' sur ce créneau.','er')}else{DB.edt.push(n);log('Créneau créé',n.classe+' '+n.jour+' '+n.d);msg('Créneau ajouté.')}draw();return false}
+function delCreneau(id){if(confirm('Supprimer ce créneau ?')){DB.edt=DB.edt.filter(t=>t.id!==id);log('Créneau supprimé',id);msg('Créneau supprimé.');draw()}}
+function addPaie(f){const a=+f.a.value;if(!(a>0)){msg('Montant invalide.','er');draw();return false}const s=f.s.value;if(!tarif(s)){msg('Aucun tarif défini pour le niveau de cet élève : définissez-le dans Tarifs de scolarité.','er');draw();return false}if(!r2(a)){msg('Montant : 2 décimales maximum.','er');draw();return false}if(a>solde(s)){msg('Le montant dépasse le solde restant ('+money(solde(s))+').','er');draw();return false}
+ const p={id:uid('p'),sid:s,montant:a,mode:f.m.value,date:new Date().toISOString().slice(0,10),ref:'RC-'+String(DB.paiements.length+1).padStart(4,'0')};DB.paiements.push(p);
+ DB.users.filter(u=>u.role==='parent'&&u.enfants.includes(s)).forEach(u=>{const m={id:uid('m'),de:U.id,a:u.id,sujet:'Paiement reçu '+p.ref,corps:`Paiement de ${money(a)} (${p.mode}) le ${p.date}. Solde restant : ${money(solde(s))}. Reçu ${p.ref} disponible dans Paiements.`,date:p.date,masque:[],sid:s};DB.msgs.push(m);notify(u.id,'Paiement enregistré – reçu '+p.ref)});
+ log('Paiement créé',p.ref+' '+a);msg('Paiement enregistré, reçu généré, parent notifié (message interne).');draw();return false}
+function recu(id){const p=DB.paiements.find(x=>x.id===id);if(!ids().includes(p.sid))return;const w=window.open('','_blank');if(!w){msg('Autorisez les fenêtres pour voir le reçu.','er');draw();return}
+ w.document.write(`<title>Reçu ${e(p.ref)}</title><body style="font-family:sans-serif;max-width:520px;margin:30px auto"><h2>École Abou El Kacem Chebbi</h2><h3>Reçu n° ${e(p.ref)}</h3><p>Élève : ${e(sn(p.sid))}<br>Montant : ${money(p.montant)}<br>Date : ${e(p.date)}<br>Mode : ${e(p.mode)}<br>Solde restant : ${money(solde(p.sid))}</p><button onclick="print()">Imprimer / PDF</button></body>`);w.document.close()}
+const kids=sid=>DB.users.filter(u=>(u.role==='eleve'&&u.sid===sid)||(u.role==='parent'&&u.enfants.includes(sid)));
+const dEnd=d=>new Date(d.due+'T23:59:59'),myAff=()=>DB.affect.filter(a=>a.prof===U.id);
+const stat=(d,sid)=>{const m=DB.depots.find(x=>x.hid===d.id&&x.sid===sid);return m?(m.note!=null?'Noté':'Rendu'):(new Date()>dEnd(d)?'En retard':'Non rendu')};
+const notifyClass=(cl,t)=>{const s=new Set();DB.eleves.filter(x=>x.classe===cl).forEach(x=>kids(x.id).forEach(u=>s.add(u.id)));s.forEach(i=>notify(i,t))};
+const fltS=f=>{const a=DB.affect.find(x=>x.id===f.a.value);f.s.innerHTML=a?opts(DB.eleves.filter(s=>s.classe===a.classe).map(s=>[s.id,s.prenom+' '+s.nom])):''};
+const kOpts=(to,sel)=>{const r=DB.users.find(u=>u.id===to);let L=[];if(r){if(r.role==='parent')L=mine().filter(s=>r.enfants.includes(s.id));else if(r.role==='enseignant')L=mine().filter(s=>tcl(r).includes(s.classe));else if(r.role==='eleve')L=mine().filter(s=>s.id===r.sid);else L=mine()}return opts([['','— Aucun —'],...L.map(s=>[s.id,s.prenom+' '+s.nom+' ('+s.classe+')'])],sel)};
+let MF='';
+const edit2=(h,s)=>{ED={k:'corr',h,s};draw()};
+const compose=(to,sid)=>{ED={k:'reply',to,sid,sujet:''};R='msgs';draw()};
+function reply(id){const m=DB.msgs.find(x=>x.id===id&&x.a===U.id);if(!m)return;ED={k:'reply',to:m.de,sid:m.sid,sujet:/^Re: /.test(m.sujet)?m.sujet:'Re: '+m.sujet};draw()}
+function saveNote(f,id){if(U.role!=='enseignant')return FE(f,'Seuls les enseignants saisissent les notes.');
+ const a=DB.affect.find(x=>x.id===f.a.value&&x.prof===U.id);if(!a)return FE(f,'Classe ou matière non autorisée pour vous.','a');
+ const s=stu(f.s.value);if(!s||s.classe!==a.classe)return FE(f,'Cet élève n’appartient pas à la classe sélectionnée.','s');
+ const raw=f.v.value.trim().replace(',','.'),v=+raw,tri=+f.r.value,t=f.t.value;
+ if(raw===''||isNaN(v)||v<0||v>20)return FE(f,'Note invalide : valeur entre 0 et 20.','v');
+ if(Math.round(v*4)!==v*4)return FE(f,'La note doit être un multiple de 0,25.','v');
+ if(![1,2,3].includes(tri))return FE(f,'Trimestre invalide.','r');
+ if(!['Contrôle continu','Examen trimestriel'].includes(t))return FE(f,'Type d’évaluation invalide.','t');
+ if(t==='Examen trimestriel'&&DB.notes.some(n=>n.id!==id&&n.sid===s.id&&n.mat===a.mat&&n.tri===tri&&n.type===t))return FE(f,'Un examen trimestriel existe déjà pour cet élève, cette matière et ce trimestre : modifiez-le.','t');
+ const d={sid:s.id,mat:a.mat,val:v,type:t,tri,prof:U.id};
+ if(id){const n=DB.notes.find(x=>x.id===id&&x.prof===U.id);if(!n)return FE(f,'Note introuvable.');const old=n.val;Object.assign(n,d);log('Note modifiée',sn(s.id)+' '+a.mat+' : '+old+' → '+v);return done('Note modifiée.')}
+ DB.notes.push({id:uid('n'),...d});log('Note saisie',sn(s.id)+' '+a.mat+' '+v);return done('Note enregistrée.')}
+function delNote(id){const n=DB.notes.find(x=>x.id===id&&x.prof===U.id);if(n&&confirm('Supprimer cette note ?')){DB.notes=DB.notes.filter(x=>x.id!==id);log('Note supprimée',sn(n.sid)+' '+n.mat+' '+n.val);save();msg('Note supprimée.');draw()}}
+function saveDevoir(f,id){if(U.role!=='enseignant')return FE(f,'Action réservée aux enseignants.');
+ const d0=id?DB.devoirs.find(x=>x.id===id&&x.prof===U.id):null,a=id?null:DB.affect.find(x=>x.id===f.a.value&&x.prof===U.id);
+ if(id&&!d0)return FE(f,'Devoir introuvable.');if(!id&&!a)return FE(f,'Classe ou matière non autorisée pour vous.','a');
+ const t=sp(f.t.value),x=f.x.value.trim(),due=f.d.value,b=+f.b.value;
+ if(t.length<3||t.length>100)return FE(f,'Le titre doit contenir entre 3 et 100 caractères.','t');
+ if(x.length<5||x.length>1000)return FE(f,'La description doit contenir entre 5 et 1000 caractères.','x');
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(due)||isNaN(new Date(due)))return FE(f,'Date de remise invalide.','d');
+ if(due<today()&&(!d0||d0.due!==due))return FE(f,'La date de remise ne peut pas être dans le passé.','d');
+ if(!Number.isInteger(b)||b<1||b>100)return FE(f,'Barème : entier entre 1 et 100.','b');
+ if(d0){if(b!==d0.bareme&&DB.depots.some(p=>p.hid===id&&p.note!=null))return FE(f,'Barème non modifiable : des notes ont déjà été attribuées.','b');
+  Object.assign(d0,{titre:t,desc:x,due,bareme:b});notifyClass(d0.classe,'Devoir modifié : '+t);log('Devoir modifié',t);return done('Devoir modifié, élèves et parents notifiés.')}
+ DB.devoirs.push({id:uid('h'),classe:a.classe,mat:a.mat,prof:U.id,titre:t,desc:x,due,bareme:b,corrige:'',vus:[]});notifyClass(a.classe,'Nouveau devoir : '+t);log('Devoir publié',t+' ('+a.classe+')');return done('Devoir publié, élèves et parents notifiés.')}
+function delDevoir(id){const d=DB.devoirs.find(x=>x.id===id&&x.prof===U.id);if(!d)return;const n=DB.depots.filter(p=>p.hid===id).length;
+ if(confirm(n?n+' travail(aux) déjà déposé(s) seront supprimés avec ce devoir. Confirmer la suppression ?':'Supprimer ce devoir ?')){DB.devoirs=DB.devoirs.filter(x=>x.id!==id);DB.depots=DB.depots.filter(p=>p.hid!==id);log('Devoir supprimé',d.titre+(n?' ('+n+' dépôts)':''));save();msg('Devoir supprimé.');draw()}}
+function saveCorr(f,h,sid){const d=DB.devoirs.find(x=>x.id===h&&x.prof===U.id),m=DB.depots.find(x=>x.hid===h&&x.sid===sid);if(!d||!m)return FE(f,'Aucun travail déposé à corriger.');
+ const bar=d.bareme||20,raw=f.v.value.trim().replace(',','.'),v=+raw,c=f.c.value.trim();
+ if(raw===''||isNaN(v)||v<0||v>bar)return FE(f,'Note invalide : entre 0 et '+bar+'.','v');
+ if(Math.round(v*4)!==v*4)return FE(f,'La note doit être un multiple de 0,25.','v');
+ if(c.length>500)return FE(f,'Commentaire limité à 500 caractères.','c');
+ const old=m.note;m.note=v;m.comm=c;kids(sid).forEach(u=>notify(u.id,'Note publiée pour « '+d.titre+' » : '+v+'/'+bar));log(old!=null?'Note de devoir modifiée':'Devoir noté',sn(sid)+' '+d.titre+' : '+(old!=null?old+' → ':'')+v);return done('Note publiée, élève et parent notifiés.')}
+const MAXF=800*1024,RENTREE='2026-09-01',PER=['Matin','Après-midi','Journée'],MOT=['Maladie','Rendez-vous médical','Raison familiale','Autre'];
+const r2=v=>Math.abs(v*100-Math.round(v*100))<1e-6;
+const corrVisible=(d,sid)=>U.role==='enseignant'?d.prof===U.id:ids().includes(sid)&&(new Date()>dEnd(d)||DB.depots.some(x=>x.hid===d.id&&x.sid===sid&&x.note!=null));
+const corrBlock=(d,sid)=>{if(!d.corrige&&!d.corrigePdf)return '<p class="note">Correction non publiée.</p>';
+ if(!corrVisible(d,sid))return '<p class="note">Correction visible après la date de remise ou dès que le travail est noté.</p>';
+ return `<p><b>Correction</b> ${d.corrigePdf?`<button type="button" class="b s" onclick="dlCorrige('${d.id}','${sid}')">📄 ${e(d.corrigePdf.name)}</button>`:''}</p>${d.corrige?`<p style="white-space:normal">${e(d.corrige)}</p>`:''}`};
+function dlCorrige(h,sid){const d=DB.devoirs.find(x=>x.id===h);if(d&&d.corrigePdf&&corrVisible(d,sid))dl(d.corrigePdf)}
+function dlDepot(h,sid){const d=DB.devoirs.find(x=>x.id===h),m=DB.depots.find(x=>x.hid===h&&x.sid===sid);if(d&&m&&m.pdf&&(U.role==='enseignant'?d.prof===U.id:ids().includes(sid)))dl(m.pdf)}
+function dlAbs(id){const a=DB.absences.find(x=>x.id===id);if(a&&a.pdf&&ids().includes(a.sid)||a&&a.pdf&&U.role==='admin')dl(a.pdf)}
+function printBull(id){const el=document.getElementById('b-'+id);if(!el||!ids().includes(id))return;document.querySelectorAll('.pr').forEach(x=>x.classList.remove('pr'));el.classList.add('pr');document.body.classList.add('p1');const t=document.title;document.title='Bulletin - '+sn(id);window.addEventListener('afterprint',()=>{el.classList.remove('pr');document.body.classList.remove('p1');document.title=t},{once:true});window.print()}
+function saveCorrige(f,h){const d=DB.devoirs.find(x=>x.id===h&&x.prof===U.id),t=f.x.value.trim();if(!d)return FE(f,'Devoir introuvable.');
+ if(t.length>3000)return FE(f,'Explication limitée à 3000 caractères.','x');
+ const fin=pdf=>{if(!t&&!pdf&&!d.corrigePdf)return FE(f,'Joignez un PDF ou saisissez une explication.','p');d.corrige=t;if(pdf)d.corrigePdf=pdf;const past=new Date()>dEnd(d);if(past)notifyClass(d.classe,'Correction publiée : '+d.titre);log('Corrigé publié',d.titre);done(past?'Corrigé publié, élèves et parents notifiés.':'Corrigé enregistré : visible après la date de remise (ou dès qu’un travail est noté).')};
+ if(f.p.files&&f.p.files[0])readPdf(f.p,fin,m=>FE(f,m,'p'));else fin(null);return false}
+function depot(f,h){const d=DB.devoirs.find(x=>x.id===h),c=f.x.value.trim();
+ if(U.role!=='eleve'||!d||stu(U.sid).classe!==d.classe)return FE(f,'Dépôt non autorisé.');
+ if(new Date()>dEnd(d))return FE(f,'La date de remise est dépassée.');
+ const o0=DB.depots.find(p=>p.hid===h&&p.sid===U.sid);if(o0&&o0.note!=null)return FE(f,'Ce travail est déjà noté : il ne peut plus être remplacé.');
+ if(c.length>300)return FE(f,'Commentaire limité à 300 caractères.','x');
+ readPdf(f.p,pdf=>{if(new Date()>dEnd(d))return FE(f,'La date de remise est dépassée.');const o=DB.depots.find(p=>p.hid===h&&p.sid===U.sid);
+  if(o)Object.assign(o,{pdf,texte:c,date:today()});else DB.depots.push({hid:h,sid:U.sid,pdf,texte:c,note:null,comm:'',date:today()});
+  notify(d.prof,sn(U.sid)+' a déposé « '+d.titre+' »');log('Devoir rendu',d.titre+' ('+pdf.name+')');done('Travail déposé au format PDF.')},m=>FE(f,m,'p'));return false}
+function saveAbs(f,id){if(U.role!=='enseignant')return FE(f,'Action réservée aux enseignants.');
+ const s=mine().find(x=>x.id===f.s.value),d=f.d.value,r=f.r.value;
+ if(!s)return FE(f,'Élève non autorisé.','s');if(!PER.includes(r))return FE(f,'Période invalide.','r');
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||isNaN(new Date(d)))return FE(f,'Date invalide.','d');
+ if(d>today())return FE(f,'Une absence ne peut pas être enregistrée à une date future.','d');
+ if(d<RENTREE)return FE(f,'Date antérieure à la rentrée ('+RENTREE+').','d');
+ if(new Date(d+'T12:00:00Z').getUTCDay()===0)return FE(f,'Le dimanche n’est pas un jour de classe.','d');
+ if(DB.absences.some(a=>a.id!==id&&a.sid===s.id&&a.date===d&&(a.per===r||a.per==='Journée'||r==='Journée')))return FE(f,'Une absence est déjà enregistrée pour cet élève sur cette période.','r');
+ if(id){const a=DB.absences.find(x=>x.id===id&&x.prof===U.id&&x.statut==='Non justifiée');if(!a)return FE(f,'Seule une absence non justifiée peut être modifiée.');Object.assign(a,{sid:s.id,date:d,per:r});log('Absence modifiée',s.prenom+' '+s.nom+' '+d);return done('Absence modifiée.')}
+ DB.absences.push({id:uid('ab'),sid:s.id,date:d,per:r,statut:'Non justifiée',prof:U.id});
+ DB.users.filter(u=>u.role==='parent'&&u.enfants.includes(s.id)).forEach(u=>notify(u.id,'Absence de '+s.prenom+' le '+d+' ('+r+')'));log('Absence enregistrée',s.prenom+' '+s.nom+' '+d+' '+r);return done('Absence enregistrée, parent notifié.')}
+function delAbs(id){const a=DB.absences.find(x=>x.id===id&&x.prof===U.id&&x.statut==='Non justifiée');if(a&&confirm('Supprimer cette absence ?')){DB.absences=DB.absences.filter(x=>x.id!==id);log('Absence supprimée',sn(a.sid)+' '+a.date);save();msg('Absence supprimée.');draw()}}
+function saveJust(f,id){const a=DB.absences.find(x=>x.id===id&&U.role==='parent'&&U.enfants.includes(x.sid));
+ if(!a||!['Non justifiée','Refusée'].includes(a.statut))return FE(f,'Justification impossible pour cette absence.');
+ const mo=f.m.value,c=f.c.value.trim();if(!MOT.includes(mo))return FE(f,'Motif invalide.','m');
+ if(c.length<(mo==='Autre'?10:5)||c.length>300)return FE(f,'Explication : '+(mo==='Autre'?10:5)+' à 300 caractères.','c');
+ const fin=pdf=>{Object.assign(a,{statut:'En attente',motif:mo,comm:c,just:today()});if(pdf)a.pdf=pdf;DB.users.filter(u=>u.role==='admin').forEach(u=>notify(u.id,'Justification reçue : '+sn(a.sid)+' ('+a.date+')'));log('Absence justifiée (en attente)',sn(a.sid)+' '+a.date);done('Justification envoyée à l’administration.')};
+ if(f.p.files&&f.p.files[0])readPdf(f.p,fin,m=>FE(f,m,'p'));else fin(null);return false}
+function decideAbs(id,ok){const a=DB.absences.find(x=>x.id===id&&x.statut==='En attente');if(U.role!=='admin'||!a)return;a.statut=ok?'Justifiée':'Refusée';DB.users.filter(u=>u.role==='parent'&&u.enfants.includes(a.sid)).forEach(u=>notify(u.id,'Justification '+(ok?'acceptée':'refusée')+' : '+sn(a.sid)+' ('+a.date+')'));log('Justification '+(ok?'validée':'refusée'),sn(a.sid)+' '+a.date);save();msg('Justification '+(ok?'validée':'refusée')+'.');draw()}
+const concerned=t=>DB.eleves.filter(s=>{const c=DB.classes.find(x=>x.id===s.classe);return s.annee===t.annee&&c&&c.niveau===t.niveau});
+function saveTarif(f,id){if(U.role!=='admin'&&U.role!=='comptable')return FE(f,'Action non autorisée.');
+ const y=f.y.value.trim(),n=f.n.value,num=el=>el.value.trim().replace(',','.'),i=+num(f.i),s=+num(f.s),t=+f.t.value,m=y.match(/^(\d{4})-(\d{4})$/);
+ if(!m||+m[2]!==+m[1]+1||+m[1]<2020||+m[1]>2100)return FE(f,'Année scolaire invalide : format AAAA-AAAA consécutif (ex. 2026-2027).','y');
+ if(!NIV.includes(n))return FE(f,'Niveau invalide.','n');
+ if(num(f.i)===''||isNaN(i)||i<0||i>5000||!r2(i))return FE(f,'Inscription : montant entre 0 et 5 000 (2 décimales max.).','i');
+ if(num(f.s)===''||isNaN(s)||s<=0||s>20000||!r2(s))return FE(f,'Scolarité : montant supérieur à 0 et inférieur à 20 000 (2 décimales max.).','s');
+ if(!Number.isInteger(t)||t<1||t>10)return FE(f,'Tranches : entier entre 1 et 10.','t');
+ if(DB.tarifs.some(x=>x.id!==id&&x.annee===y&&x.niveau===n))return FE(f,'Un tarif existe déjà pour '+n+' en '+y+' : modifiez-le.','n');
+ const old=id&&DB.tarifs.find(x=>x.id===id),nt={annee:y,niveau:n,inscription:i,scolarite:s,tranches:t};
+ if(id){if(!old)return FE(f,'Tarif introuvable.');
+  if((old.annee!==y||old.niveau!==n)&&concerned(old).some(e2=>paye(e2.id)>0))return FE(f,'Année et niveau non modifiables : des paiements existent déjà.','y');
+  const bad=concerned(nt).find(e2=>paye(e2.id)>i+s+1e-9);if(bad)return FE(f,'Total inférieur aux paiements déjà reçus ('+money(paye(bad.id))+' pour '+bad.prenom+' '+bad.nom+').','s');
+  Object.assign(old,nt);log('Tarif modifié',n+' '+y+' : '+money(i+s));return done('Tarif modifié : les soldes sont recalculés.')}
+ DB.tarifs.push({id:uid('tf'),...nt});log('Tarif créé',n+' '+y+' : '+money(i+s));return done('Tarif ajouté.')}
+function delTarif(id){const t=DB.tarifs.find(x=>x.id===id);if(!t||(U.role!=='admin'&&U.role!=='comptable'))return;
+ if(concerned(t).some(s=>paye(s.id)>0)){msg('Suppression refusée : des paiements ont été enregistrés pour ce niveau et cette année.','er');draw();return}
+ if(confirm('Supprimer le tarif '+t.niveau+' '+t.annee+' ?')){DB.tarifs=DB.tarifs.filter(x=>x.id!==id);log('Tarif supprimé',t.niveau+' '+t.annee);save();msg('Tarif supprimé.');draw()}}
+function vu(h,sid){const d=DB.devoirs.find(x=>x.id===h);if(U.role!=='parent'||!U.enfants.includes(sid)||!d)return;d.vus=d.vus||[];d.vus.push(U.id+':'+sid);save();draw()}
+function saveMsg(f,go_,did){const to=f.a.value,k=f.k.value,s=sp(f.s.value),b=f.b.value.trim(),r=recips().find(u=>u.id===to);
+ if(!r)return FE(f,'Destinataire non autorisé pour votre profil.','a');
+ if(k&&!kOpts(to).includes('value="'+k+'"'))return FE(f,'Cet élève n’est pas concerné par ce destinataire.','k');
+ if(s.length>100)return FE(f,'Objet limité à 100 caractères.','s');if(b.length>2000)return FE(f,'Message limité à 2000 caractères.','b');
+ if(go_){if(s.length<3)return FE(f,'L’objet doit contenir au moins 3 caractères.','s');if(b.length<2)return FE(f,'Le message est vide ou trop court.','b');
+  if((U.role==='enseignant'||r.role==='enseignant')&&!k)return FE(f,'Choisissez l’élève concerné par cet échange.','k')}
+ else if(!s&&!b)return FE(f,'Un brouillon doit contenir au moins un objet ou un message.','s');
+ const m=did?DB.msgs.find(x=>x.id===did&&x.de===U.id&&x.brouillon):null,d={de:U.id,a:to,sid:k,sujet:s,corps:b,date:today(),masque:[],brouillon:!go_};
+ if(m)Object.assign(m,d);else DB.msgs.push({id:uid('m'),...d});
+ if(go_){notify(to,'Nouveau message de '+U.nom+(k?' (à propos de '+sn(k)+')':''));log('Message envoyé','à '+nm(to));return done('Message envoyé.')}
+ return done('Brouillon enregistré.')}
+function delDraft(id){if(confirm('Supprimer ce brouillon ?')){DB.msgs=DB.msgs.filter(m=>!(m.id===id&&m.de===U.id&&m.brouillon));save();draw()}}
+function masque(id){const m=DB.msgs.find(x=>x.id===id&&x.a===U.id);if(m){m.masque.push(U.id);save();draw()}}
+function annonce(f){const t=sp(f.t.value),b=f.b.value.trim().replace(/\n{3,}/g,'\n\n'),c=f.c.value;
+ if(t.length<5||t.length>100)return FE(f,'Le titre doit contenir entre 5 et 100 caractères (actuellement '+t.length+').','t');
+ if(!/\p{L}/u.test(t))return FE(f,'Le titre doit contenir du texte.','t');
+ if(b.length<10||b.length>1000)return FE(f,'Le texte doit contenir entre 10 et 1000 caractères (actuellement '+b.length+').','b');
+ if(!['tous','parent','eleve','enseignant'].includes(c))return FE(f,'Public invalide.','c');
+ if(DB.annonces.some(a=>a.titre.toLowerCase()===t.toLowerCase()&&a.cible===c&&a.date===today()))return FE(f,'Une annonce identique a déjà été publiée aujourd’hui.','t');
+ if(!confirm('Une annonce publiée est définitive (ni modifiable, ni supprimable). Publier ?'))return false;
+ DB.annonces.unshift({id:uid('a'),titre:t,corps:b,cible:c,date:today()});
+ DB.users.filter(u=>u.role!=='admin'&&(c==='tous'||u.role===c)).forEach(u=>notify(u.id,'Annonce : '+t));log('Annonce publiée',t);return done('Annonce publiée.')}
+const ICO={'🏠':'<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>','🎒':'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/>','🏫':'<path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M12 9v.01"/>','👥':'<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M17 14.2c2.4.3 4 2.4 4 5"/>','🔑':'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M16 7l3 3"/>','❓':'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 .5c0 1.7-2.5 2-2.5 3.5"/><path d="M12 17v.01"/>','🕒':'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>','💰':'<path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7.5" cy="7.5" r="1.3"/>','🚪':'<path d="M6 21V4a1 1 0 011-1h10a1 1 0 011 1v17"/><path d="M3 21h18"/><path d="M14.5 12.5v.01"/>','👩\u200d🏫':'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8"/><path d="M12 16v4"/>','🗓':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/>','📝':'<path d="M8 3h8v3H8z"/><path d="M6 5H5a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1V6a1 1 0 00-1-1h-1"/><path d="M8 12h8M8 16h5"/>','💳':'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/>','📚':'<path d="M5 3h13a1 1 0 011 1v15H6.5A1.5 1.5 0 005 20.5z"/><path d="M5 20.5V3"/><path d="M9 8h6"/>','✉':'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>','📣':'<path d="M3 11v3a1 1 0 001 1h2l7 4V6L6 10H4a1 1 0 00-1 1z"/><path d="M16 9a4 4 0 010 6"/><path d="M19 7a7 7 0 010 10"/>','🔍':'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>','🔓':'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 017.5-2"/>','🗑':'<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/>','🔰':'<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5v.01"/>','👋':'','💡':'<path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"/>','📄':'<path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/>','➕':'<path d="M12 5v14M5 12h14"/>','✏':'<path d="M4 20l1-4L16.5 4.5a2 2 0 013 3L8 19z"/><path d="M14 7l3 3"/>','⏸':'<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>','▶':'<path d="M7 4l13 8-13 8z"/>','👤':'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/>','✅':'<circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/>','⬜':'<circle cx="12" cy="12" r="9"/>','✔':'<path d="M5 12.5l4.5 4.5L19 7"/>','🚀':'<path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/>','🖨':'<path d="M7 9V3h10v6"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 14h10v7H7z"/>','📋':'<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3H9z"/>','⎋':'<path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/>','☰':'<path d="M4 6h16M4 12h16M4 18h16"/>','←':'<path d="M19 12H5M11 6l-6 6 6 6"/>','✕':'<path d="M6 6l12 12M18 6L6 18"/>'};
+const icRe=new RegExp('('+Object.keys(ICO).sort((a,b)=>b.length-a.length).join('|')+')\uFE0F?','g');
+const svgOf=k=>ICO[k]===''?'':`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICO[k]}</svg>`;
+function iconize(root){if(!root)return;const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>/^(OPTION|TEXTAREA|SCRIPT|STYLE|TITLE)$/.test(n.parentNode.nodeName)?NodeFilter.FILTER_REJECT:(icRe.lastIndex=0,icRe.test(n.nodeValue))?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT}),L=[];while(w.nextNode())L.push(w.currentNode);
+ L.forEach(n=>{const t=n.nodeValue,fr=document.createDocumentFragment();let last=0,m;icRe.lastIndex=0;while((m=icRe.exec(t))){if(m.index>last)fr.appendChild(document.createTextNode(t.slice(last,m.index)));const s=svgOf(m[1]);if(s){const sp=document.createElement('span');sp.innerHTML=s;fr.appendChild(sp.firstChild)}last=icRe.lastIndex}if(last<t.length)fr.appendChild(document.createTextNode(t.slice(last)));n.parentNode.replaceChild(fr,n)})}
+const LOGO='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#fff"><path d="M15.9 6.3A7.5 7.5 0 1 0 15.9 17.7A6 6 0 1 1 15.9 6.3z"/><path d="M16.90 9.10L17.61 11.03L19.66 11.10L18.04 12.37L18.60 14.35L16.90 13.20L15.20 14.35L15.76 12.37L14.14 11.10L16.19 11.03z"/></svg>';
+let MORE=false;
+const BOT={admin:['dash','comptes','eleves','paie'],enseignant:['dash','notes','devoirs','msgs'],parent:['dash','notes','paie','msgs'],eleve:['dash','devoirs','notes','edt'],comptable:['dash','paie','tarifs','msgs']},SHORT={dash:'Accueil',comptes:'Comptes',eleves:'Élèves',paie:'Paiements',notes:'Notes',devoirs:'Devoirs',msgs:'Messages',edt:'Horaires',tarifs:'Tarifs'};
+const tabbar=()=>{const b=BOT[U.role],rest=NAV[U.role].filter(r=>!b.includes(r));
+ return `<div class="tabbar noprint" role="navigation" aria-label="Menu rapide">${b.map(r=>`<a href="#" class="${r===R?'on':''}" onclick="go('${r}');return false"><i>${IC[r]}</i><span>${SHORT[r]||LBL[r]}</span></a>`).join('')}<a href="#" class="${MORE?'on':''}" aria-expanded="${MORE}" onclick="MORE=!MORE;draw();return false"><i>☰</i><span>Plus</span></a></div>
+ ${MORE?`<div class="sheet noprint" onclick="if(event.target===this){MORE=false;draw()}"><div role="dialog" aria-label="Tous les menus"><div class="sheethead"><b>Tous les menus</b><button class="b s" onclick="MORE=false;draw()">✕ Fermer</button></div>${rest.concat(['aide','compte']).map(r=>`<a href="#" class="srow" onclick="go('${r}');return false"><i>${IC[r]}</i>${LBL[r]}</a>`).join('')}<a href="#" class="srow out" onclick="logout();return false"><i>⎋</i>Se déconnecter</a></div></div>`:''}`};
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&MORE){MORE=false;draw()}});
+const _draw=draw;draw=function(){_draw();iconize(document.getElementById('root'))};
+boot();
+</script></body></html>
